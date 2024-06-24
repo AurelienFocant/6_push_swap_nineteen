@@ -1,0 +1,13 @@
+.DS_Store
+
+*.swp
+
+push_swap
+*out*
+*.o
+
+outfile
+
+tags
+
+./libft/libft.a
