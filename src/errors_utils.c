@@ -9,7 +9,7 @@ void	ft_error_and_exit(char *msg, int nb_error)
 void	ft_check_arg_errors(int argc, char **argv)
 {
 	if (argc < 2)
-		ft_error_and_exit("Error", 1);
+		ft_error_and_exit("Not enough arguments", 1);
 
 	if (argc == 2)
 		(void) argv;
@@ -18,3 +18,9 @@ void	ft_check_arg_errors(int argc, char **argv)
 		// split the string
 }
 
+void	ft_free_lists(t_node *stack_a, t_node *stack_b)
+{
+	stack_a = NULL;
+	stack_b = NULL;
+	return ;
+}

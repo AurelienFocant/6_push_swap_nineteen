@@ -39,7 +39,7 @@ $(LIB):
 	$(MAKE) -C $(LIB_DIR)
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR)
-	$(CC) $(CFLAGS) $(DFLAGS) $(GFLAGS) -Iincludes -c $< -o $@
+	$(CC) $(CFLAGS) $(DFLAGS) $(GFLAGS) -Iincludes -Ilibft -c $< -o $@
 
 $(OBJ_DIR):
 	mkdir -p obj
