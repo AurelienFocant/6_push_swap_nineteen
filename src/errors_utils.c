@@ -22,5 +22,7 @@ void	ft_free_lists(t_node *stack_a, t_node *stack_b)
 {
 	stack_a = NULL;
 	stack_b = NULL;
+	(void) stack_a;
+	(void) stack_b;
 	return ;
 }
