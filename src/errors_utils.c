@@ -18,11 +18,20 @@ void	ft_check_arg_errors(int argc, char **argv)
 		// split the string
 }
 
+void	ft_free_linkedlist(t_node *lst)
+{
+	t_node	*ptr;
+
+	while (lst)
+	{
+		ptr = lst;
+		lst = lst->next;
+		free(ptr);
+	}
+}
+
 void	ft_free_lists(t_node *stack_a, t_node *stack_b)
 {
-	stack_a = NULL;
-	stack_b = NULL;
-	(void) stack_a;
-	(void) stack_b;
-	return ;
+	ft_free_linkedlist(stack_a);
+	ft_free_linkedlist(stack_b);
 }

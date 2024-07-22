@@ -1,5 +1,12 @@
 #include "push_swap.h"
 
+void	ft_print_node_data(t_node *node)
+{
+	if (!node)
+		return ;
+	ft_printf("%i\n", node->data);
+}
+
 void	ft_print_list(t_node *stack)
 {
 	t_node	*ptr;
@@ -7,7 +14,7 @@ void	ft_print_list(t_node *stack)
 	ptr = stack;
 	while (ptr)
 	{
-		printf("%i\n", ptr->data);
+		ft_print_node_data(ptr);
 		ptr = ptr->next;
 	}
 }
@@ -58,6 +65,8 @@ int main(int argc, char **argv)
 
 	stack_a = NULL;
 	ft_init_stacks(argv, &stack_a);
+	ft_print_list(stack_a);
+	ft_swap(&stack_a);
 	ft_print_list(stack_a);
 	exit(0);
 }

@@ -9,9 +9,11 @@ DFLAGS	=	-fsanitize=address -fsanitize=undefined
 #---------------------------------------------------------#
 SRC_DIR	=	src
 
-SRC		=	$(wildcard $(SRC_DIR)/*.c)
+SRC		=	$(shell find $(SRC_DIR) -type f -name "*.c")
 
 OBJ_DIR	=	obj
+
+OP_DIR	=	operations
 
 OBJ		=	$(SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 
@@ -39,7 +41,7 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR)
 	$(CC) $(CFLAGS) $(DFLAGS) $(GFLAGS) -I$(INC_DIR) -I$(LIB_DIR)/$(INC_DIR) -c $< -o $@
 
 $(OBJ_DIR):
-	mkdir -p obj
+	mkdir -p $(OBJ_DIR)/$(OP_DIR)
 #---------------------------------------------------------#
 clean:
 	rm -rf $(OBJ_DIR)

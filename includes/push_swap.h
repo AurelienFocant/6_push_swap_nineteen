@@ -23,4 +23,6 @@ void    ft_init_stacks(char **argv, t_node **stack_a);
 void    ft_create_node(int data, t_node **stack_a);
 int main(int argc, char **argv);
 
+void	ft_swap(t_node **stack);
+
 #endif
