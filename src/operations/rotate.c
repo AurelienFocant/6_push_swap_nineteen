@@ -6,7 +6,7 @@ void	ft_rotate(t_node **stack)
 	t_node	*last_node;
 
 	last_node = ft_get_last_node(stack);
-	if (!last_node)
+	if (!last_node || last_node == *stack)
 		return ;
 	ptr = *stack;
 	*stack = ptr->next;

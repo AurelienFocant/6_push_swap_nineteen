@@ -16,7 +16,7 @@ int main(int argc, char **argv)
 	ft_push(&stack_a, &stack_b);
 	ft_print_stack(stack_a, "A===");
 	ft_print_stack(stack_b, "B===");
-	ft_rotate(&stack_a);
+	ft_reverse_rotate(&stack_a);
 	ft_print_stack(stack_a, "A===");
 	ft_rotate(&stack_b);
 	ft_print_stack(stack_b, "B===");
