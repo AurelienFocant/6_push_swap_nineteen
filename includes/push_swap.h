@@ -41,7 +41,6 @@ void	pa(t_node **stack_a, t_node **stack_b);
 void	pb(t_node **stack_a, t_node **stack_b);
 
 /*----------------  reverse_rotate.c  ---------------*/
-t_node	*ft_get_penult_node(t_node **stack, t_node **last_node);
 void	ft_reverse_rotate(t_node **stack);
 void	rra(t_node **stack);
 void	rrb(t_node **stack);
@@ -58,4 +57,5 @@ void	ft_swap(t_node **stack);
 void	sa(t_node **stack_a);
 void	sb(t_node **stack_b);
 void	ss(t_node **stack_a, t_node **stack_b);
+
 #endif
