@@ -13,7 +13,11 @@ SRC		=	$(shell find $(SRC_DIR) -type f -name "*.c")
 
 OBJ_DIR	=	obj
 
-OP_DIR	=	operations
+OPE_DIR	=	operations
+
+LST_DIR	=	list_utils
+
+ERR_DIR	=	errors_utils
 
 OBJ		=	$(SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 
@@ -41,7 +45,9 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR)
 	$(CC) $(CFLAGS) $(DFLAGS) $(GFLAGS) -I$(INC_DIR) -I$(LIB_DIR)/$(INC_DIR) -c $< -o $@
 
 $(OBJ_DIR):
-	mkdir -p $(OBJ_DIR)/$(OP_DIR)
+	mkdir -p $(OBJ_DIR)/$(OPE_DIR)
+	mkdir -p $(OBJ_DIR)/$(ERR_DIR)
+	mkdir -p $(OBJ_DIR)/$(LST_DIR)
 #---------------------------------------------------------#
 clean:
 	rm -rf $(OBJ_DIR)
