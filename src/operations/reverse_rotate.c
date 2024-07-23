@@ -1,0 +1,36 @@
+#include "push_swap.h"
+
+void	ft_reverse_rotate(t_node **stack)
+{
+	t_node	*last_node;
+	t_node	*penult_node;
+
+	last_node = ft_get_last_node(stack);
+	if (!last_node)
+		return ;
+	penult_node = ft_get_penult_node(stack, &last_node);
+	if (!penult_node)
+		return ;
+	last_node->next = *stack;
+	*stack = last_node;
+	penult_node->next = NULL;
+}
+
+void	rra(t_node **stack)
+{
+	ft_reverse_rotate(stack);
+	ft_printf("rra\n");
+}
+
+void	rrb(t_node **stack)
+{
+	ft_reverse_rotate(stack);
+	ft_printf("rrb\n");
+}
+
+void	rrr(t_node **stack_a, t_node **stack_b)
+{
+	ft_reverse_rotate(stack_a);
+	ft_reverse_rotate(stack_b);
+	ft_printf("rrr\n");
+}

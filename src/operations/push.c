@@ -20,3 +20,15 @@ void	ft_push(t_node **stack_from, t_node **stack_to)
 	}
 	ptr = NULL;
 }
+
+void	pa(t_node **stack_a, t_node **stack_b)
+{
+	ft_push(stack_a, stack_b);
+	ft_printf("pa\n");
+}
+
+void	pb(t_node **stack_a, t_node **stack_b)
+{
+	ft_push(stack_b, stack_a);
+	ft_printf("pb\n");
+}
