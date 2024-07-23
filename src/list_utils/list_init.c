@@ -44,3 +44,21 @@ void	ft_create_node(int data, t_node **stack_a)
 		ptr->next = new_node;
 	}
 }
+
+void	ft_free_linkedlist(t_node *lst)
+{
+	t_node	*ptr;
+
+	while (lst)
+	{
+		ptr = lst;
+		lst = lst->next;
+		free(ptr);
+	}
+}
+
+void	ft_free_lists(t_node *stack_a, t_node *stack_b)
+{
+	ft_free_linkedlist(stack_a);
+	ft_free_linkedlist(stack_b);
+}
