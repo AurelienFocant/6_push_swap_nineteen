@@ -11,7 +11,6 @@ void	ft_print_error(char *str)
 		printf("Error writing on stderr");
 	if (write(2, &nl, 1) != 1)
 		printf("Error writing on stderr");
-
 }
 
 void	ft_error_and_exit(char *msg, int nb_error)
@@ -36,7 +35,7 @@ int		ft_is_str_nbr(char *str)
 	return (1);
 }
 
-int		ft_check_non_integers(char **argv)
+void	ft_check_non_integers(char **argv)
 {
 	size_t	i;
 
@@ -51,7 +50,25 @@ int		ft_check_non_integers(char **argv)
 			ft_error_and_exit("Arg is too small to be an int", 4);
 		i++;
 	}
-	return (1);
+}
+
+void	ft_check_duplicates(char **argv, size_t size)
+{
+	size_t	i;
+	size_t	j;
+
+	i = 1;
+	while (i < size)
+	{
+		j = i + 1;
+		while (j < size)
+		{
+			if (ft_strcmp(argv[i], argv[j]) == 0)
+				ft_error_and_exit("Duplicates args", 5);
+			j++;
+		}
+		i++;
+	}
 }
 
 void	ft_check_arg_errors(int argc, char **argv)
@@ -64,5 +81,5 @@ void	ft_check_arg_errors(int argc, char **argv)
 	// split the string
 
 	ft_check_non_integers(argv);
-	//ft_check_duplicates(argv);
+	ft_check_duplicates(argv, ((size_t) argc));
 }

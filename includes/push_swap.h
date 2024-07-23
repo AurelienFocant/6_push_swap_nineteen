@@ -15,15 +15,19 @@ typedef struct	s_node
 }				t_node;
 
 /*----------------  errors_utils.c  ---------------*/
+void	ft_print_error(char *str);
 void	ft_error_and_exit(char *msg, int nb_error);
+int		ft_is_str_nbr(char *str);
+void	ft_check_non_integers(char **argv);
+void	ft_check_duplicates(char **argv, size_t size);
 void	ft_check_arg_errors(int argc, char **argv);
-void	ft_free_linkedlist(t_node *lst);
-void	ft_free_lists(t_node *stack_a, t_node *stack_b);
 
 /*----------------  list_init.c  ---------------*/
 void	ft_print_node_data(t_node *node);
 void	ft_init_stack(char **argv, t_node **stack_a);
 void	ft_create_node(int data, t_node **stack_a);
+void	ft_free_linkedlist(t_node *lst);
+void	ft_free_lists(t_node *stack_a, t_node *stack_b);
 
 /*----------------  print_list.c  ---------------*/
 void	ft_print_list(t_node *stack);
@@ -34,6 +38,7 @@ t_node	*ft_get_last_node(t_node **stack);
 t_node	*ft_get_penult_node(t_node **stack, t_node **last_node);
 
 /*----------------  main.c  ---------------*/
+void	ft_test_ops(t_node *stack_a, t_node *stack_b);
 int main(int argc, char **argv);
 
 /*----------------  push.c  ---------------*/
