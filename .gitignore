@@ -3,11 +3,6 @@
 *.swp
 
 push_swap
-*out*
-*.o
+obj/*
 
-outfile
-
-tags
-
-*.a
+misc/tags
