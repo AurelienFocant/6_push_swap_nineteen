@@ -17,12 +17,10 @@ void	ft_test_ops(t_node *stack_a, t_node *stack_b)
 int main(int argc, char **argv)
 {
 	t_node	*stack_a;
-	t_node	*stack_b;
 
 	ft_check_arg_errors(argc, argv);
 
 	stack_a = NULL;
-	stack_b = NULL;
 	ft_init_stack(argv, &stack_a);
 
 	exit(0);
