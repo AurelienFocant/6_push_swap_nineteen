@@ -19,6 +19,18 @@ OBJ_SUBDIRS	=	$(SRC_SUBDIRS:$(SRC_DIR)%=$(OBJ_DIR)%)
 
 OBJ			=	$(SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 #---------------------------------------------------------#
+BONUS_SRC_DIR		=	bonus
+
+BONUS_OBJ_SUBDIRS	=	$(shell find $(BONUS_SRC_DIR)/* -type d)
+
+BONUS_SRC		=	$(shell find $(BONUS_SRC_DIR) -type f -name "*.c")
+
+BONUS_OBJ_DIR	=	obj_bonus
+
+BONUS_OBJ_SUBDIRS	=	$(BONUS_OBJ_SUBDIRS:$(BONUS_SRC_DIR)%=$(BONUS_OBJ_DIR)%)
+
+OBJ			=	$(SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
+#---------------------------------------------------------#
 INC_DIR		=	includes
 
 INC_FLAGS	=	-I$(INC_DIR) -I$(LIBFT_DIR)/$(INC_DIR)
@@ -39,9 +51,13 @@ LIB_FLAGS	=	-L$(LIBFT_DIR) -l$(FT)
 
 .PHONY: all lib clean fclean libclean re
 #---------------------------------------------------------#
-NAME	=	push_swap
+NAME		=	push_swap
+
+CHECKER		=	checker
 
 all:		$(NAME)
+
+bonus:		$(CHECKER)
 
 lib:		$(LIBFT_DIR)/$(LIBFT)
 
