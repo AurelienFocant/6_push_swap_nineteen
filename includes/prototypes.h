@@ -25,7 +25,6 @@ void	ss(t_node **stack_a, t_node **stack_b);
 
 /*----------------  main.c  ---------------*/
 void	ft_test_ops(t_node *stack_a, t_node *stack_b);
-int main(int argc, char **argv);
 
 /*----------------  errors_utils.c  ---------------*/
 void	ft_print_error(char *str);
