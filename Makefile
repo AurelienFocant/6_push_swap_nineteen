@@ -23,21 +23,21 @@ INC_DIR		=	includes
 
 INC_FLAGS	=	-I$(INC_DIR) -I$(LIBFT_DIR)/$(INC_DIR)
 #---------------------------------------------------------#
-BONUS_SRC_DIR		=	src_bonus
-
-BONUS_OBJ_SUBDIRS	=	$(shell find $(BONUS_SRC_DIR)/* -type d)
-
-BONUS_SRC			=	$(shell find $(BONUS_SRC_DIR) -type f -name "*.c")
-
-BONUS_OBJ_DIR		=	obj_bonus
-
-BONUS_OBJ_SUBDIRS	=	$(BONUS_SRC_SUBDIRS:$(BONUS_SRC_DIR)%=$(BONUS_OBJ_DIR)%)
-
-BONUS_OBJ			=	$(BONUS_SRC:$(BONUS_SRC_DIR)/%.c=$(BONUS_OBJ_DIR)/%.o)
-
-BONUS_INC_DIR		=	includes_bonus
-
-BONUS_INC_FLAGS		=	-I$(INC_DIR) -I$(BONUS_INC_DIR) -I$(LIBFT_DIR)/$(INC_DIR)
+#BONUS_SRC_DIR		=	src_bonus
+#
+#BONUS_OBJ_SUBDIRS	=	$(shell find $(BONUS_SRC_DIR)/* -type d)
+#
+#BONUS_SRC			=	$(shell find $(BONUS_SRC_DIR) -type f -name "*.c")
+#
+#BONUS_OBJ_DIR		=	obj_bonus
+#
+#BONUS_OBJ_SUBDIRS	=	$(BONUS_SRC_SUBDIRS:$(BONUS_SRC_DIR)%=$(BONUS_OBJ_DIR)%)
+#
+#BONUS_OBJ			=	$(BONUS_SRC:$(BONUS_SRC_DIR)/%.c=$(BONUS_OBJ_DIR)/%.o)
+#
+#BONUS_INC_DIR		=	includes_bonus
+#
+#BONUS_INC_FLAGS		=	-I$(INC_DIR) -I$(BONUS_INC_DIR) -I$(LIBFT_DIR)/$(INC_DIR)
 #---------------------------------------------------------#
 LIBFT_DIR	=	libft
 
