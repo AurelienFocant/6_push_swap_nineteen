@@ -35,6 +35,10 @@ BONUS_OBJ_SUBDIRS	=	$(BONUS_SRC_SUBDIRS:$(BONUS_SRC_DIR)%=$(BONUS_OBJ_DIR)%)
 
 BONUS_OBJ			=	$(BONUS_SRC:$(BONUS_SRC_DIR)/%.c=$(BONUS_OBJ_DIR)/%.o)
 
+BONUS_PUSH_SWAP_LIB	=	libpush_swap.a
+BONUS_OBJ_LIB		=	$(shell find $(OBJ_DIR) -type f -name "*.o" | grep -v main)
+BONUS_LIB_FLAG		=	-lpush_swap
+
 BONUS_INC_DIR		=	includes_bonus
 
 BONUS_INC_FLAGS		=	-I$(INC_DIR) -I$(BONUS_INC_DIR) -I$(LIBFT_DIR)/$(INC_DIR)
@@ -57,8 +61,6 @@ LIB_FLAGS	=	-L$(LIBFT_DIR) -l$(FT)
 #---------------------------------------------------------#
 NAME		=	push_swap
 
-CHECKER		=	checker
-
 all:		$(NAME)
 
 lib:		$(LIBFT_DIR)/$(LIBFT)
@@ -79,10 +81,17 @@ $(OBJ_DIR):
 $(OBJ_SUBDIRS):
 	mkdir -p $@
 #---------------------------------------------------------#
+CHECKER		=	checker
+
 bonus:		$(CHECKER)
 
-$(CHECKER):	$(BONUS_OBJ) $(LIBFT_DIR)/$(LIBFT)
-	$(CC) $(CFLAGS) $(DFLAGS) $(GFLAGS) $(LIB_FLAGS) $(BONUS_OBJ) -o $@
+bonuslib:	$(BONUS_PUSH_SWAP_LIB)
+
+$(BONUS_PUSH_SWAP_LIB): $(BONUS_OBJ_LIB) $(OBJ)
+	ar rcs $(BONUS_PUSH_SWAP_LIB) $(BONUS_OBJ_LIB)
+
+$(CHECKER):	$(BONUS_OBJ) $(LIBFT_DIR)/$(LIBFT) $(BONUS_PUSH_SWAP_LIB)
+	$(CC) $(CFLAGS) $(DFLAGS) $(GFLAGS) $(LIB_FLAGS) $(BONUS_OBJ_LIB) $(BONUS_OBJ) -o $@
 
 $(BONUS_OBJ_DIR)/%.o: $(BONUS_SRC_DIR)/%.c | $(BONUS_OBJ_SUBDIRS) $(BONUS_OBJ_DIR)
 	@echo $(BONUS_OBJ_SUBDIRS)
