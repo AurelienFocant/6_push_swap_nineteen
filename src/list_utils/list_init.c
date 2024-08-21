@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   list_init.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: afocant <afocant@student.s19.be>           +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/08/21 16:50:45 by afocant           #+#    #+#             */
+/*   Updated: 2024/08/21 17:02:44 by afocant          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 void	ft_print_node_data(t_node *node)
@@ -32,8 +44,6 @@ void	ft_create_node(int data, t_node **stack_a)
 	}
 	new_node->data = data;
 	new_node->next = NULL;
-
-
 	if (!*stack_a)
 		*stack_a = new_node;
 	else

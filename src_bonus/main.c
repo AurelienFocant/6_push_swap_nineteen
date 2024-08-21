@@ -1,31 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: afocant <afocant@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/21 16:50:15 by afocant           #+#    #+#             */
-/*   Updated: 2024/08/21 16:55:49 by afocant          ###   ########.fr       */
+/*   Created: 2024/08/21 15:33:08 by afocant           #+#    #+#             */
+/*   Updated: 2024/08/21 17:03:48 by afocant          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+#include "checker.h"
 
-# include <stdio.h>
-# include <stdlib.h>
-# include <unistd.h>
-
-# include "libft.h"
-
-typedef struct s_node
+int	main(void)
 {
-	int				data;
-	struct s_node	*next;
-	struct s_node	*prev;
-}				t_node;
+	char	*line;
 
-# include "prototypes_push_swap.h"
-
-#endif
+	line = ft_get_next_line(STDIN_FILENO);
+	while (line)
+	{
+		printf("yo\n");
+		line = ft_get_next_line(STDIN_FILENO);
+	}
+	return (0);
+}

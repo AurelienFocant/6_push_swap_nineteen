@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   errors_utils.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: afocant <afocant@student.s19.be>           +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/08/21 16:50:39 by afocant           #+#    #+#             */
+/*   Updated: 2024/08/21 17:02:17 by afocant          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 void	ft_print_error(char *str)
@@ -19,7 +31,7 @@ void	ft_error_and_exit(char *msg, int nb_error)
 	exit(nb_error);
 }
 
-int		ft_is_str_nbr(char *str)
+int	ft_is_str_nbr(char *str)
 {
 	size_t	i;
 
@@ -75,11 +87,9 @@ void	ft_check_arg_errors(int argc, char **argv)
 {
 	if (argc < 2)
 		ft_error_and_exit("Not enough arguments", 1);
-
 	// if just one digit, it is sorted already
 	// otherwise if a string
 	// split the string
-
 	ft_check_non_integers(argv);
 	ft_check_duplicates(argv, ((size_t) argc));
 }
