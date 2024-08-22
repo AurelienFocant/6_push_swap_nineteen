@@ -6,7 +6,7 @@
 /*   By: afocant <afocant@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 16:51:03 by afocant           #+#    #+#             */
-/*   Updated: 2024/08/22 23:15:53 by afocant          ###   ########.fr       */
+/*   Updated: 2024/08/22 23:28:08 by afocant          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,17 +50,39 @@ void	fn_set_targets(t_node **stack_a, t_node **stack_b)
 	}
 }
 
+unsigned int	fn_find_position(int value, t_node *stack)
+{
+	unsigned int	pos;
+	t_node			*ptr;
+
+	pos = 0;
+	ptr = stack;
+	while (ptr->data != value)
+	{
+		pos++;
+		ptr = ptr->next;
+	}
+	return (--pos);
+}
+
 unsigned int	fn_count_moves_to_top(int value, t_node *stack)
 {
 	unsigned int	moves;
 	unsigned int	len;
 	unsigned int	median;
+	unsigned int	position;
 
 	len = fn_stacklen(stack);
-	median = len / 2;
+	if (len % 2 == 0)
+		median = len / 2;
+	else
+		median = len / 2 + 1;
 	moves = 0;
-	(void) value;
-	
+	position = fn_find_position(value, stack);
+	if (position < median)
+		moves = position;
+	else
+		moves = len - position + 1;
 	return (moves);
 }
 
