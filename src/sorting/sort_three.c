@@ -6,7 +6,7 @@
 /*   By: afocant <afocant@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 19:19:13 by afocant           #+#    #+#             */
-/*   Updated: 2024/08/22 20:06:39 by afocant          ###   ########.fr       */
+/*   Updated: 2024/08/22 20:19:55 by afocant          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,13 @@ int	fn_sort_three(t_node **stack)
 	else if ((*stack)->next->data == max)
 		rra(stack);
 	if (!fn_is_sorted(*stack))
+		sa(stack);
+	return (TRUE);
+}
+
+int	fn_sort_two(t_node **stack)
+{
+	if ((*stack)->data < (*stack)->next->data)
 		sa(stack);
 	return (TRUE);
 }

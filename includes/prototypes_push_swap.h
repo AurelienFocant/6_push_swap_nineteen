@@ -46,12 +46,12 @@ void	sb(t_node **stack_b);
 void	ss(t_node **stack_a, t_node **stack_b);
 
 /*----------------  push_swap_main.c  ---------------*/
-void	ft_test_ops(t_node *stack_a, t_node *stack_b);
 
 /*----------------  sort_three.c  ---------------*/
 int	fn_find_max(t_node *stack);
 int	fn_find_min(t_node *stack);
 int	fn_sort_three(t_node **stack);
+int	fn_sort_two(t_node **stack);
 
 /*----------------  sorting_utils.c  ---------------*/
 int	fn_is_sorted(t_node *stack_a);

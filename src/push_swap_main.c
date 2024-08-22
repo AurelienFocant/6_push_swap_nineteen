@@ -6,7 +6,7 @@
 /*   By: afocant <afocant@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 16:51:03 by afocant           #+#    #+#             */
-/*   Updated: 2024/08/22 20:09:56 by afocant          ###   ########.fr       */
+/*   Updated: 2024/08/22 20:12:40 by afocant          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ int	main(int argc, char **argv)
 	stack_a = NULL;
 	stack_b = NULL;
 	ft_init_stack(argv, &stack_a);
-	ft_test_ops(stack_a, stack_b);
+	fn_sort_three(&stack_a);
+	ft_print_stack(stack_a, "A");
 
 	exit(0);
 }
