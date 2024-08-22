@@ -6,7 +6,7 @@
 /*   By: afocant <afocant@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 16:50:58 by afocant           #+#    #+#             */
-/*   Updated: 2024/08/22 23:00:43 by afocant          ###   ########.fr       */
+/*   Updated: 2024/08/22 23:14:06 by afocant          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,4 +46,5 @@ unsigned int	fn_stacklen(t_node *stack)
 		len++;
 		ptr = ptr->next;
 	}
+	return (len);
 }

@@ -6,7 +6,7 @@
 /*   By: afocant <afocant@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 16:51:03 by afocant           #+#    #+#             */
-/*   Updated: 2024/08/22 23:06:01 by afocant          ###   ########.fr       */
+/*   Updated: 2024/08/22 23:15:53 by afocant          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,8 @@ unsigned int	fn_count_moves_to_top(int value, t_node *stack)
 	len = fn_stacklen(stack);
 	median = len / 2;
 	moves = 0;
+	(void) value;
+	
 	return (moves);
 }
 
@@ -67,8 +69,8 @@ int	fn_find_cost(t_node *node, t_node **stack_a, t_node **stack_b)
 	unsigned int	cost;
 
 	cost = 0;
-	cost += fn_count_moves_to_top(node->data, stack_a);
-	cost += fn_count_moves_to_top(node->target, stack_b);
+	cost += fn_count_moves_to_top(node->data, *stack_a);
+	cost += fn_count_moves_to_top(node->target, *stack_b);
 	return (cost);
 }
 
