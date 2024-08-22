@@ -6,7 +6,7 @@
 /*   By: afocant <afocant@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 15:33:08 by afocant           #+#    #+#             */
-/*   Updated: 2024/08/22 14:57:36 by afocant          ###   ########.fr       */
+/*   Updated: 2024/08/22 15:19:03 by afocant          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,23 @@ void	fn_execute_cmd(char *line, t_node **stack_a, t_node **stack_b)
 		fn_error_exit("Error\n");
 }
 
+int	fn_is_sorted(t_node *stack_a)
+{
+	int		min;
+	t_node *ptr;
+
+	min = INT_MIN;
+	ptr = stack_a;
+	while (ptr)
+	{
+		if (ptr->data < min)
+			return (FALSE);
+		min = ptr->data;
+		ptr = ptr->next;
+	}
+	return (TRUE);
+}
+
 int	main(int argc, char **argv)
 {
 	char	*line;
@@ -70,5 +87,9 @@ int	main(int argc, char **argv)
 		ft_print_stack(stack_a, "A");
 		line = ft_get_next_line(STDIN_FILENO);
 	}
+	if (fn_is_sorted(stack_a))
+		printf("OK\n");
+	else
+		printf("KO\n");
 	return (0);
 }
