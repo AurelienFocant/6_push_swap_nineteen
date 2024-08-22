@@ -110,6 +110,7 @@ clean:
 fclean:		clean
 	rm -rf $(NAME) 
 	rm -rf $(CHECKER)
+	rm -rf *.a
 
 libclean:
 	rm -rf $(LIBFT_DIR)/$(OBJ_DIR)
