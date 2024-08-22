@@ -7,3 +7,6 @@ obj/*
 
 misc/tags
 *Session.vim
+
+checker
+*.a
