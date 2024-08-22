@@ -45,8 +45,6 @@ void	sa(t_node **stack_a);
 void	sb(t_node **stack_b);
 void	ss(t_node **stack_a, t_node **stack_b);
 
-/*----------------  push_swap_main.c  ---------------*/
-
 /*----------------  sort_three.c  ---------------*/
 int	fn_find_max(t_node *stack);
 int	fn_find_min(t_node *stack);

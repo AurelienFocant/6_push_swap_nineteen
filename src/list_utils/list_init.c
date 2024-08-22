@@ -6,7 +6,7 @@
 /*   By: afocant <afocant@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 16:50:45 by afocant           #+#    #+#             */
-/*   Updated: 2024/08/22 20:07:39 by afocant          ###   ########.fr       */
+/*   Updated: 2024/08/22 21:35:43 by afocant          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ void	ft_create_node(int data, t_node **stack_a)
 	}
 	new_node->data = data;
 	new_node->next = NULL;
+	new_node->target = INT_MIN;
+	new_node->cost = -1;
 	if (!*stack_a)
 		*stack_a = new_node;
 	else
