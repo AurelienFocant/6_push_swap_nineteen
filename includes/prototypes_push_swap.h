@@ -23,9 +23,6 @@ void	ft_print_stack(t_node *stack, char *name);
 t_node	*ft_get_last_node(t_node **stack);
 t_node	*ft_get_penult_node(t_node **stack, t_node **last_node);
 
-/*----------------  main.c  ---------------*/
-void	ft_test_ops(t_node *stack_a, t_node *stack_b);
-
 /*----------------  push.c  ---------------*/
 void	ft_push(t_node **stack_from, t_node **stack_to);
 void	pa(t_node **stack_a, t_node **stack_b);
@@ -48,3 +45,6 @@ void	ft_swap(t_node **stack);
 void	sa(t_node **stack_a);
 void	sb(t_node **stack_b);
 void	ss(t_node **stack_a, t_node **stack_b);
+
+/*----------------  push_swap_main.c  ---------------*/
+void	ft_test_ops(t_node *stack_a, t_node *stack_b);
