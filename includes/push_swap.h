@@ -6,7 +6,7 @@
 /*   By: afocant <afocant@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 16:50:15 by afocant           #+#    #+#             */
-/*   Updated: 2024/08/21 16:55:49 by afocant          ###   ########.fr       */
+/*   Updated: 2024/08/22 15:15:26 by afocant          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,9 @@
 # include <unistd.h>
 
 # include "libft.h"
+
+# define FALSE 0
+# define TRUE 1
 
 typedef struct s_node
 {

@@ -3,7 +3,10 @@
 *.swp
 
 push_swap
-obj/*
+obj*
 
 misc/tags
 *Session.vim
+
+checker
+*.a

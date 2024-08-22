@@ -6,7 +6,7 @@
 /*   By: afocant <afocant@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 17:03:23 by afocant           #+#    #+#             */
-/*   Updated: 2024/08/21 17:03:26 by afocant          ###   ########.fr       */
+/*   Updated: 2024/08/22 15:07:02 by afocant          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	ft_swap(t_node **stack)
 {
 	t_node	*ptr;
 
-	if (!stack || !(*stack)->next)
+	if (!*stack || !(*stack)->next)
 		return ;
 	ptr = (*stack)->next;
 	(*stack)->next = ptr->next;
