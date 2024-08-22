@@ -85,6 +85,8 @@ CHECKER		=	checker
 
 bonus:		$(CHECKER)
 
+br:	re bonus
+
 bonuslib:	$(BONUS_PUSH_SWAP_LIB)
 
 $(BONUS_PUSH_SWAP_LIB): $(BONUS_OBJ_LIB) $(OBJ)
