@@ -6,7 +6,7 @@
 /*   By: afocant <afocant@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 16:50:45 by afocant           #+#    #+#             */
-/*   Updated: 2024/08/21 17:02:44 by afocant          ###   ########.fr       */
+/*   Updated: 2024/08/22 20:07:39 by afocant          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	ft_create_node(int data, t_node **stack_a)
 	if (!new_node)
 	{
 		ft_free_lists(*stack_a, NULL);
-		ft_error_and_exit("Error creating a node", 3);
+		fn_error_exit("Error creating a node", 3);
 	}
 	new_node->data = data;
 	new_node->next = NULL;
