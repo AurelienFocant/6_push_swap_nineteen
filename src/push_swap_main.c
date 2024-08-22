@@ -6,7 +6,7 @@
 /*   By: afocant <afocant@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 16:51:03 by afocant           #+#    #+#             */
-/*   Updated: 2024/08/22 21:15:25 by afocant          ###   ########.fr       */
+/*   Updated: 2024/08/22 23:06:01 by afocant          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,49 @@ void	fn_set_targets(t_node **stack_a, t_node **stack_b)
 	ptr = *stack_a;
 	while (ptr)
 	{
-		printf("%i\n", ptr->target);
+		printf("target is %i\n", ptr->target);
 		ptr = ptr->next;
 	}
-	return;
+}
+
+unsigned int	fn_count_moves_to_top(int value, t_node *stack)
+{
+	unsigned int	moves;
+	unsigned int	len;
+	unsigned int	median;
+
+	len = fn_stacklen(stack);
+	median = len / 2;
+	moves = 0;
+	return (moves);
+}
+
+int	fn_find_cost(t_node *node, t_node **stack_a, t_node **stack_b)
+{
+	unsigned int	cost;
+
+	cost = 0;
+	cost += fn_count_moves_to_top(node->data, stack_a);
+	cost += fn_count_moves_to_top(node->target, stack_b);
+	return (cost);
+}
+
+void	fn_set_cost(t_node **stack_a, t_node **stack_b)
+{
+	t_node	*ptr;
+
+	ptr = *stack_a;
+	while (ptr)
+	{
+		ptr->cost = fn_find_cost(ptr, stack_a, stack_b);
+		ptr = ptr->next;
+	}
+	ptr = *stack_a;
+	while (ptr)
+	{
+		printf("cost is %i\n", ptr->cost);
+		ptr = ptr->next;
+	}
 }
 
 void	fn_push_swap(t_node **stack_a, t_node **stack_b)
@@ -57,6 +96,7 @@ void	fn_push_swap(t_node **stack_a, t_node **stack_b)
 	pa(stack_a, stack_b);
 	
 	fn_set_targets(stack_a, stack_b);
+	fn_set_cost(stack_a, stack_b);
 }
 
 int	main(int argc, char **argv)
