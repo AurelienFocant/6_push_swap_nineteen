@@ -6,7 +6,7 @@
 /*   By: afocant <afocant@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 16:51:03 by afocant           #+#    #+#             */
-/*   Updated: 2024/08/23 15:12:03 by afocant          ###   ########.fr       */
+/*   Updated: 2024/08/23 18:29:41 by afocant          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,8 +111,8 @@ void	fn_set_cost(t_node **stack_a, t_node **stack_b)
 
 void	fn_push_swap(t_node **stack_a, t_node **stack_b)
 {
-	pa(stack_a, stack_b);
-	pa(stack_a, stack_b);
+	pb(stack_a, stack_b);
+	pb(stack_a, stack_b);
 	
 	fn_set_targets(stack_a, stack_b);
 	fn_set_cost(stack_a, stack_b);
