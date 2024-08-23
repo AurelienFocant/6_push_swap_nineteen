@@ -6,7 +6,7 @@
 /*   By: afocant <afocant@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 16:51:03 by afocant           #+#    #+#             */
-/*   Updated: 2024/08/22 23:28:08 by afocant          ###   ########.fr       */
+/*   Updated: 2024/08/23 15:12:03 by afocant          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,20 @@
 
 int	fn_find_target(int data, t_node **stack_b)
 {
-	int	tmp;
-	int	target;
+	long	target;
 	t_node	*ptr;
 
-	tmp = INT_MIN;
-	target = INT_MIN;
+	target = LONG_MIN;
 	ptr = *stack_b;
 	while (ptr)
 	{
-		if (ptr->data < data)
-			tmp = ptr->data;
-		if (tmp > target)
-			target = tmp;
+		if (ptr->data < data && ptr->data > target)
+			target = ptr->data;
 		ptr = ptr->next;
 	}
-	return (target);
+	if (target == LONG_MIN)
+		target = fn_find_max(*stack_b);
+	return ((int) target);
 }
 
 void	fn_set_targets(t_node **stack_a, t_node **stack_b)
@@ -57,12 +55,12 @@ unsigned int	fn_find_position(int value, t_node *stack)
 
 	pos = 0;
 	ptr = stack;
-	while (ptr->data != value)
+	while (ptr && ptr->data != value)
 	{
 		pos++;
 		ptr = ptr->next;
 	}
-	return (--pos);
+	return (pos);
 }
 
 unsigned int	fn_count_moves_to_top(int value, t_node *stack)
@@ -73,16 +71,13 @@ unsigned int	fn_count_moves_to_top(int value, t_node *stack)
 	unsigned int	position;
 
 	len = fn_stacklen(stack);
-	if (len % 2 == 0)
-		median = len / 2;
-	else
-		median = len / 2 + 1;
+	median = len / 2;
 	moves = 0;
 	position = fn_find_position(value, stack);
-	if (position < median)
+	if (position <= median)
 		moves = position;
 	else
-		moves = len - position + 1;
+		moves = len - position;
 	return (moves);
 }
 
