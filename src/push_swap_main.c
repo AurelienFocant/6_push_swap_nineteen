@@ -6,28 +6,33 @@
 /*   By: afocant <afocant@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 16:51:03 by afocant           #+#    #+#             */
-/*   Updated: 2024/08/23 15:12:03 by afocant          ###   ########.fr       */
+/*   Updated: 2024/08/23 16:38:40 by afocant          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	fn_find_target(int data, t_node **stack_b)
+t_node	*fn_find_target(int data, t_node **stack_b)
 {
-	long	target;
+	t_node	*target;
 	t_node	*ptr;
+	long	min;
 
-	target = LONG_MIN;
+	min = LONG_MIN;
 	ptr = *stack_b;
 	while (ptr)
 	{
-		if (ptr->data < data && ptr->data > target)
-			target = ptr->data;
+		if (ptr->data < data && ptr->data > min)
+		{
+			min = ptr->data;
+			target = ptr;
+		}
 		ptr = ptr->next;
 	}
-	if (target == LONG_MIN)
+	if (min == LONG_MIN)
 		target = fn_find_max(*stack_b);
-	return ((int) target);
+
+	return (target);
 }
 
 void	fn_set_targets(t_node **stack_a, t_node **stack_b)
@@ -38,12 +43,6 @@ void	fn_set_targets(t_node **stack_a, t_node **stack_b)
 	while (ptr)
 	{
 		ptr->target = fn_find_target(ptr->data, stack_b);
-		ptr = ptr->next;
-	}
-	ptr = *stack_a;
-	while (ptr)
-	{
-		printf("target is %i\n", ptr->target);
 		ptr = ptr->next;
 	}
 }
@@ -63,7 +62,7 @@ unsigned int	fn_find_position(int value, t_node *stack)
 	return (pos);
 }
 
-unsigned int	fn_count_moves_to_top(int value, t_node *stack)
+unsigned int	fn_count_moves_to_top(t_node *node, t_node *stack)
 {
 	unsigned int	moves;
 	unsigned int	len;
@@ -73,11 +72,17 @@ unsigned int	fn_count_moves_to_top(int value, t_node *stack)
 	len = fn_stacklen(stack);
 	median = len / 2;
 	moves = 0;
-	position = fn_find_position(value, stack);
+	position = fn_find_position(node->data, stack);
 	if (position <= median)
+	{
+		node->is_above_median = 1;
 		moves = position;
+	}
 	else
+	{
+		node->is_above_median = 0;
 		moves = len - position;
+	}
 	return (moves);
 }
 
@@ -86,26 +91,27 @@ int	fn_find_cost(t_node *node, t_node **stack_a, t_node **stack_b)
 	unsigned int	cost;
 
 	cost = 0;
-	cost += fn_count_moves_to_top(node->data, *stack_a);
+	cost += fn_count_moves_to_top(node, *stack_a);
 	cost += fn_count_moves_to_top(node->target, *stack_b);
+	if (node->is_above_median == node->target->is_above_median)
+	{
+		if (cost % 2 == 0)
+			cost /= 2;
+		else
+			cost = cost / 2 - 1;
+	}
 	return (cost);
 }
 
 void	fn_set_cost(t_node **stack_a, t_node **stack_b)
 {
-	t_node	*ptr;
+	t_node	*node;
 
-	ptr = *stack_a;
-	while (ptr)
+	node = *stack_a;
+	while (node)
 	{
-		ptr->cost = fn_find_cost(ptr, stack_a, stack_b);
-		ptr = ptr->next;
-	}
-	ptr = *stack_a;
-	while (ptr)
-	{
-		printf("cost is %i\n", ptr->cost);
-		ptr = ptr->next;
+		node->cost = fn_find_cost(node, stack_a, stack_b);
+		node = node->next;
 	}
 }
 

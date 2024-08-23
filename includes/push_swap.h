@@ -6,7 +6,7 @@
 /*   By: afocant <afocant@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 16:50:15 by afocant           #+#    #+#             */
-/*   Updated: 2024/08/22 21:35:28 by afocant          ###   ########.fr       */
+/*   Updated: 2024/08/23 16:37:02 by afocant          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ typedef struct s_node
 {
 	int				data;
 	struct s_node	*next;
-	int				target;
+	struct s_node	*target;
+	int				is_above_median;
 	int				cost;
 }				t_node;
 
