@@ -6,7 +6,7 @@
 /*   By: afocant <afocant@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 17:03:09 by afocant           #+#    #+#             */
-/*   Updated: 2024/08/21 17:03:10 by afocant          ###   ########.fr       */
+/*   Updated: 2024/08/23 18:27:15 by afocant          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,14 +33,14 @@ void	ft_push(t_node **stack_from, t_node **stack_to)
 	ptr = NULL;
 }
 
-void	pa(t_node **stack_a, t_node **stack_b)
-{
-	ft_push(stack_a, stack_b);
-	ft_printf("pa\n");
-}
-
 void	pb(t_node **stack_a, t_node **stack_b)
 {
-	ft_push(stack_b, stack_a);
+	ft_push(stack_a, stack_b);
 	ft_printf("pb\n");
+}
+
+void	pa(t_node **stack_a, t_node **stack_b)
+{
+	ft_push(stack_b, stack_a);
+	ft_printf("pa\n");
 }
