@@ -21,6 +21,7 @@ void	ft_print_stack(t_node *stack, char *name);
 /*----------------  search_list.c  ---------------*/
 t_node	*ft_get_last_node(t_node **stack);
 t_node	*ft_get_penult_node(t_node **stack, t_node **last_node);
+unsigned int	fn_stacklen(t_node *stack);
 
 /*----------------  push.c  ---------------*/
 void	ft_push(t_node **stack_from, t_node **stack_to);
@@ -44,6 +45,14 @@ void	ft_swap(t_node **stack);
 void	sa(t_node **stack_a);
 void	sb(t_node **stack_b);
 void	ss(t_node **stack_a, t_node **stack_b);
+
+/*----------------  push_swap_main.c  ---------------*/
+int	fn_find_target(int data, t_node **stack_b);
+void	fn_set_targets(t_node **stack_a, t_node **stack_b);
+unsigned int	fn_count_moves_to_top(int value, t_node *stack);
+int	fn_find_cost(t_node *node, t_node **stack_a, t_node **stack_b);
+void	fn_set_cost(t_node **stack_a, t_node **stack_b);
+void	fn_push_swap(t_node **stack_a, t_node **stack_b);
 
 /*----------------  sort_three.c  ---------------*/
 int	fn_find_max(t_node *stack);
