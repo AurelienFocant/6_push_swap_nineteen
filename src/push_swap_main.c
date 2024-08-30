@@ -6,7 +6,7 @@
 /*   By: afocant <afocant@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 16:51:03 by afocant           #+#    #+#             */
-/*   Updated: 2024/08/30 15:04:21 by afocant          ###   ########.fr       */
+/*   Updated: 2024/08/30 15:14:10 by afocant          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,6 +118,7 @@ void	fn_push_swap(t_node **stack_a, t_node **stack_b)
 	//fn_set_cost(stack_a, stack_b);
 }
 
+/*
 int	main(int argc, char **argv)
 {
 	t_node	*stack_a;
@@ -135,3 +136,4 @@ int	main(int argc, char **argv)
 
 	exit(EXIT_SUCCESS);
 }
+*/

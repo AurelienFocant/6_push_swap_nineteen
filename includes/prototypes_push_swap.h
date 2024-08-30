@@ -27,6 +27,8 @@ t_node	*ft_get_last_node(t_node **stack);
 t_node	*ft_get_penult_node(t_node **stack, t_node **last_node);
 unsigned int	fn_stacklen(t_node *stack);
 
+/*----------------  main.c  ---------------*/
+
 /*----------------  push.c  ---------------*/
 void	ft_push(t_node **stack_from, t_node **stack_to);
 void	pb(t_node **stack_a, t_node **stack_b);
