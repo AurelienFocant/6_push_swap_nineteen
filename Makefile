@@ -67,6 +67,7 @@ $(NAME):	$(OBJ) $(LIBFT_DIR)/$(LIBFT)
 	$(CC) $(CFLAGS) $(DFLAGS) $(GFLAGS) $(LIB_FLAGS) $(OBJ) -o $@
 
 $(LIBFT_DIR)/$(LIBFT):
+	@echo "LIBFT being created"
 	@$(MAKE) -C $(LIBFT_DIR)
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_SUBDIRS) $(OBJ_DIR)
@@ -74,10 +75,10 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_SUBDIRS) $(OBJ_DIR)
 	$(CC) $(CFLAGS) $(DFLAGS) $(GFLAGS) $(INC_FLAGS) -c $< -o $@ 
 
 $(OBJ_DIR):
-	mkdir -p $@
+	@mkdir -p $@
 
 $(OBJ_SUBDIRS):
-	mkdir -p $@
+	@mkdir -p $@
 #---------------------------------------------------------#
 bonus:		$(CHECKER)
 
@@ -89,10 +90,10 @@ $(BONUS_OBJ_DIR)/%.o: $(BONUS_SRC_DIR)/%.c | $(BONUS_OBJ_SUBDIRS) $(BONUS_OBJ_DI
 	$(CC) $(CFLAGS) $(DFLAGS) $(GFLAGS) $(BONUS_INC_FLAGS) -c $< -o $@ 
 
 $(BONUS_OBJ_DIR):
-	mkdir -p $@
+	@mkdir -p $@
 
 $(BONUS_OBJ_SUBDIRS):
-	mkdir -p $@
+	@mkdir -p $@
 #---------------------------------------------------------#
 clean:
 	rm -rf $(OBJ_DIR)
