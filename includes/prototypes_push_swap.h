@@ -1,4 +1,7 @@
-#include "push_swap.h"
+#ifndef PROTOTYPES_PUSH_SWAP_H
+# define PROTOTYPES_PUSH_SWAP_H
+
+# include "push_swap.h"
 
 /*----------------  errors_utils.c  ---------------*/
 void	fn_error_exit(char *msg, int exitcode);
@@ -8,15 +11,16 @@ void	ft_check_duplicates(char **argv, size_t size);
 void	ft_check_arg_errors(int argc, char **argv);
 
 /*----------------  list_init.c  ---------------*/
-void	ft_print_node_data(t_node *node);
 void	ft_init_stack(char **argv, t_node **stack_a);
 void	ft_create_node(int data, t_node **stack_a);
 void	ft_free_linkedlist(t_node *lst);
 void	ft_free_lists(t_node *stack_a, t_node *stack_b);
 
 /*----------------  print_list.c  ---------------*/
+void	ft_print_node_data(t_node *node);
 void	ft_print_list(t_node *stack);
 void	ft_print_stack(t_node *stack, char *name);
+void	ft_print_both_stacks(t_node *stack_a, t_node *stack_b);
 
 /*----------------  search_list.c  ---------------*/
 t_node	*ft_get_last_node(t_node **stack);
@@ -25,8 +29,8 @@ unsigned int	fn_stacklen(t_node *stack);
 
 /*----------------  push.c  ---------------*/
 void	ft_push(t_node **stack_from, t_node **stack_to);
-void	pa(t_node **stack_a, t_node **stack_b);
 void	pb(t_node **stack_a, t_node **stack_b);
+void	pa(t_node **stack_a, t_node **stack_b);
 
 /*----------------  reverse_rotate.c  ---------------*/
 void	ft_reverse_rotate(t_node **stack);
@@ -49,6 +53,7 @@ void	ss(t_node **stack_a, t_node **stack_b);
 /*----------------  push_swap_main.c  ---------------*/
 int	fn_find_target(int data, t_node **stack_b);
 void	fn_set_targets(t_node **stack_a, t_node **stack_b);
+unsigned int	fn_find_position(int value, t_node *stack);
 unsigned int	fn_count_moves_to_top(int value, t_node *stack);
 int	fn_find_cost(t_node *node, t_node **stack_a, t_node **stack_b);
 void	fn_set_cost(t_node **stack_a, t_node **stack_b);
@@ -62,3 +67,5 @@ int	fn_sort_two(t_node **stack);
 
 /*----------------  sorting_utils.c  ---------------*/
 int	fn_is_sorted(t_node *stack_a);
+
+#endif

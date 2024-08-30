@@ -6,18 +6,11 @@
 /*   By: afocant <afocant@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 16:50:45 by afocant           #+#    #+#             */
-/*   Updated: 2024/08/22 22:00:30 by afocant          ###   ########.fr       */
+/*   Updated: 2024/08/30 15:00:41 by afocant          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-void	ft_print_node_data(t_node *node)
-{
-	if (!node)
-		return ;
-	ft_printf("%i\n", node->data);
-}
 
 void	ft_init_stack(char **argv, t_node **stack_a)
 {
