@@ -6,20 +6,23 @@
 /*   By: afocant <afocant@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 16:50:45 by afocant           #+#    #+#             */
-/*   Updated: 2024/08/30 15:00:41 by afocant          ###   ########.fr       */
+/*   Updated: 2024/08/30 15:32:48 by afocant          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ft_init_stack(char **argv, t_node **stack_a)
+void	ft_init_stack(char **argv, t_node **stack_a, t_stacklen *stacklen)
 {
 	size_t	i;
 
+	stacklen->a = 0;
+	stacklen->b = 0;
 	i = 1;
 	while (argv[i])
 	{
 		ft_create_node(ft_atoi(argv[i]), stack_a);
+		stacklen->a++;
 		i++;
 	}
 }
@@ -37,7 +40,7 @@ void	ft_create_node(int data, t_node **stack_a)
 	}
 	new_node->data = data;
 	new_node->next = NULL;
-	new_node->target = INT_MIN;
+	new_node->target = NULL;
 	new_node->cost = -1;
 	if (!*stack_a)
 		*stack_a = new_node;

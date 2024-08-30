@@ -11,7 +11,7 @@ void	ft_check_duplicates(char **argv, size_t size);
 void	ft_check_arg_errors(int argc, char **argv);
 
 /*----------------  list_init.c  ---------------*/
-void	ft_init_stack(char **argv, t_node **stack_a);
+void	ft_init_stack(char **argv, t_node **stack_a, t_stacklen *stacklen);
 void	ft_create_node(int data, t_node **stack_a);
 void	ft_free_linkedlist(t_node *lst);
 void	ft_free_lists(t_node *stack_a, t_node *stack_b);
@@ -28,11 +28,13 @@ t_node	*ft_get_penult_node(t_node **stack, t_node **last_node);
 unsigned int	fn_stacklen(t_node *stack);
 
 /*----------------  main.c  ---------------*/
+void	ft_push_swap(t_node **stack_a, t_node **stack_b);
+void	ft_test_lists(t_node **stack_a, t_node **stack_b, t_stacklen *stacklen);
 
 /*----------------  push.c  ---------------*/
 void	ft_push(t_node **stack_from, t_node **stack_to);
-void	pb(t_node **stack_a, t_node **stack_b);
-void	pa(t_node **stack_a, t_node **stack_b);
+void	pb(t_node **stack_a, t_node **stack_b, t_stacklen *stacklen);
+void	pa(t_node **stack_a, t_node **stack_b, t_stacklen *stacklen);
 
 /*----------------  reverse_rotate.c  ---------------*/
 void	ft_reverse_rotate(t_node **stack);

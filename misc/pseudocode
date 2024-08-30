@@ -5,6 +5,7 @@ push_swap pseudocode
     --check args
 
     -- init stacks
+		-- find stacklen
 
     -- push_swap
         -- if is sorted -> good

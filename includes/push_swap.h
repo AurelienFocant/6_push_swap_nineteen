@@ -6,7 +6,7 @@
 /*   By: afocant <afocant@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 16:50:15 by afocant           #+#    #+#             */
-/*   Updated: 2024/08/22 21:35:28 by afocant          ###   ########.fr       */
+/*   Updated: 2024/08/30 15:32:01 by afocant          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,15 @@ typedef struct s_node
 {
 	int				data;
 	struct s_node	*next;
-	int				target;
+	struct s_node	*target;
 	int				cost;
-}				t_node;
+}					t_node;
+
+typedef struct s_stacklen
+{
+	int	a;
+	int	b;
+}		t_stacklen;
 
 # include "prototypes_push_swap.h"
 
