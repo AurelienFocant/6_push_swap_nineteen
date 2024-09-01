@@ -1,11 +1,13 @@
 #---------------------------------------------------------#
-CC		=	cc
+CC			=	cc
 
-CFLAGS	=	-Wall -Wextra -Werror
+CFLAGS		=	-Wall -Wextra -Werror
 
-GFLAGS	=	-g
+GFLAGS		=	-g
 
-DFLAGS	=	-fsanitize=address -fsanitize=undefined
+DFLAGS		=	-fsanitize=address -fsanitize=undefined
+
+LFLAGS		=	-fuse-ld=lld
 #---------------------------------------------------------#
 SRC_DIR		=	src
 
@@ -23,26 +25,10 @@ INC_DIR		=	includes
 
 INC_FLAGS	=	-I$(INC_DIR) -I$(LIBFT_DIR)/$(INC_DIR)
 #---------------------------------------------------------#
-#BONUS_SRC_DIR		=	src_bonus
-#
-#BONUS_OBJ_SUBDIRS	=	$(shell find $(BONUS_SRC_DIR)/* -type d)
-#
-#BONUS_SRC			=	$(shell find $(BONUS_SRC_DIR) -type f -name "*.c")
-#
-#BONUS_OBJ_DIR		=	obj_bonus
-#
-#BONUS_OBJ_SUBDIRS	=	$(BONUS_SRC_SUBDIRS:$(BONUS_SRC_DIR)%=$(BONUS_OBJ_DIR)%)
-#
-#BONUS_OBJ			=	$(BONUS_SRC:$(BONUS_SRC_DIR)/%.c=$(BONUS_OBJ_DIR)/%.o)
-#
-#BONUS_INC_DIR		=	includes_bonus
-#
-#BONUS_INC_FLAGS		=	-I$(INC_DIR) -I$(BONUS_INC_DIR) -I$(LIBFT_DIR)/$(INC_DIR)
-#---------------------------------------------------------#
 LIBFT_DIR	=	libft
 
-CPU		=	$(shell uname -p)
-ifeq ($(CPU),arm)
+CPU			=	$(shell uname -m)
+ifeq ($(CPU),arm64)
 	LIBFT	=	libft_arm.a
 	FT		=	ft_arm
 else
@@ -51,9 +37,6 @@ else
 endif
 
 LIB_FLAGS	=	-L$(LIBFT_DIR) -l$(FT)
-
-
-.PHONY: all lib clean fclean libclean re
 #---------------------------------------------------------#
 NAME		=	push_swap
 
@@ -64,7 +47,7 @@ all:		$(NAME)
 lib:		$(LIBFT_DIR)/$(LIBFT)
 
 $(NAME):	$(OBJ) $(LIBFT_DIR)/$(LIBFT)
-	$(CC) $(CFLAGS) $(DFLAGS) $(GFLAGS) $(LIB_FLAGS) $(OBJ) -o $@
+	$(CC) $(CFLAGS) $(DFLAGS) $(GFLAGS) $(LFLAGS) $(OBJ) $(LIB_FLAGS) -o $@
 
 $(LIBFT_DIR)/$(LIBFT):
 	@echo "LIBFT being created"
@@ -78,21 +61,6 @@ $(OBJ_DIR):
 	@mkdir -p $@
 
 $(OBJ_SUBDIRS):
-	@mkdir -p $@
-#---------------------------------------------------------#
-bonus:		$(CHECKER)
-
-$(CHECKER):	$(BONUS_OBJ) $(LIBFT_DIR)/$(LIBFT)
-	$(CC) $(CFLAGS) $(DFLAGS) $(GFLAGS) $(LIB_FLAGS) $(BONUS_OBJ) -o $@
-
-$(BONUS_OBJ_DIR)/%.o: $(BONUS_SRC_DIR)/%.c | $(BONUS_OBJ_SUBDIRS) $(BONUS_OBJ_DIR)
-	@echo $(BONUS_OBJ_SUBDIRS)
-	$(CC) $(CFLAGS) $(DFLAGS) $(GFLAGS) $(BONUS_INC_FLAGS) -c $< -o $@ 
-
-$(BONUS_OBJ_DIR):
-	@mkdir -p $@
-
-$(BONUS_OBJ_SUBDIRS):
 	@mkdir -p $@
 #---------------------------------------------------------#
 clean:
@@ -110,5 +78,38 @@ libre: libclean lib
 
 re: fclean all
 
-libre: libclean lib
+ffclean: fclean libclean
+
+.PHONY: all lib clean fclean libclean libre re ffclean bonus
+#---------------------------------------------------------#
+#BONUS_SRC_DIR		=	src_bonus
+#
+#BONUS_OBJ_SUBDIRS	=	$(shell find $(BONUS_SRC_DIR)/* -type d)
+#
+#BONUS_SRC			=	$(shell find $(BONUS_SRC_DIR) -type f -name "*.c")
+#
+#BONUS_OBJ_DIR		=	obj_bonus
+#
+#BONUS_OBJ_SUBDIRS	=	$(BONUS_SRC_SUBDIRS:$(BONUS_SRC_DIR)%=$(BONUS_OBJ_DIR)%)
+#
+#BONUS_OBJ			=	$(BONUS_SRC:$(BONUS_SRC_DIR)/%.c=$(BONUS_OBJ_DIR)/%.o)
+#
+#BONUS_INC_DIR		=	includes_bonus
+#
+#BONUS_INC_FLAGS	=	-I$(INC_DIR) -I$(BONUS_INC_DIR) -I$(LIBFT_DIR)/$(INC_DIR)
+#---------------------------------------------------------#
+bonus:		$(CHECKER)
+
+$(CHECKER):	$(BONUS_OBJ) $(LIBFT_DIR)/$(LIBFT)
+	$(CC) $(CFLAGS) $(DFLAGS) $(GFLAGS) $(LIB_FLAGS) $(BONUS_OBJ) -o $@
+
+$(BONUS_OBJ_DIR)/%.o: $(BONUS_SRC_DIR)/%.c | $(BONUS_OBJ_SUBDIRS) $(BONUS_OBJ_DIR)
+	@echo $(BONUS_OBJ_SUBDIRS)
+	$(CC) $(CFLAGS) $(DFLAGS) $(GFLAGS) $(BONUS_INC_FLAGS) -c $< -o $@ 
+
+$(BONUS_OBJ_DIR):
+	@mkdir -p $@
+
+$(BONUS_OBJ_SUBDIRS):
+	@mkdir -p $@
 #---------------------------------------------------------#
