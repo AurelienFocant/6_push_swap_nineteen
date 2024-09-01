@@ -36,7 +36,9 @@ void	fn_set_cost(t_node **stack_a, t_node **stack_b);
 void	fn_push_swap(t_node **stack_a, t_node **stack_b);
 
 /*----------------  main.c  ---------------*/
-void	ft_push_swap(t_node **stack_a, t_node **stack_b);
+void	ft_find_target(t_node *node, t_node **stack);
+void	ft_set_targets(t_node **stack_from, t_node **stack_to, t_stacklen *stacklen);
+void	ft_push_swap(t_node **stack_a, t_node **stack_b, t_stacklen *stacklen);
 void	ft_test_lists(t_node **stack_a, t_node **stack_b, t_stacklen *stacklen);
 
 /*----------------  errors_utils.c  ---------------*/
@@ -47,8 +49,8 @@ void	ft_check_duplicates(char **argv, size_t size);
 void	ft_check_arg_errors(int argc, char **argv);
 
 /*----------------  sort_three.c  ---------------*/
-int	fn_find_max(t_node *stack);
-int	fn_find_min(t_node *stack);
+t_node	*fn_find_max(t_node *stack);
+t_node	*fn_find_min(t_node *stack);
 int	fn_sort_three(t_node **stack);
 int	fn_sort_two(t_node **stack);
 
