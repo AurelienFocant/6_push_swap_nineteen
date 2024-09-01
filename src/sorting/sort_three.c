@@ -12,36 +12,46 @@
 
 #include "push_swap.h"
 
-int	fn_find_max(t_node *stack)
+t_node	*fn_find_max(t_node *stack)
 {
-	int	max;
+	t_node	*res;
+	int		max;
 	t_node	*ptr;
 
+	res = NULL;
 	max = INT_MIN;
 	ptr = stack;
 	while (ptr)
 	{
 		if (ptr->data > max)
+		{
 			max = ptr->data;
+			res = ptr;
+		}
 		ptr = ptr->next;
 	}
-	return (max);
+	return (res);
 }
 
-int	fn_find_min(t_node *stack)
+t_node	*fn_find_min(t_node *stack)
 {
+	t_node	*res;
 	int	min;
 	t_node	*ptr;
 
+	res = NULL;
 	min = INT_MAX;
 	ptr = stack;
 	while (ptr)
 	{
 		if (ptr->data < min)
+		{
 			min = ptr->data;
+			res = ptr;
+		}
 		ptr = ptr->next;
 	}
-	return (min);
+	return (res);
 }
 
 int	fn_sort_three(t_node **stack)

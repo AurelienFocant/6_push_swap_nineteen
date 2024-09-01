@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-/*
 #include "push_swap.h"
 
 int	fn_find_target(int data, t_node **stack_b)
@@ -118,6 +117,7 @@ void	fn_push_swap(t_node **stack_a, t_node **stack_b)
 	//fn_set_targets(stack_a, stack_b);
 	//fn_set_cost(stack_a, stack_b);
 }
+/*
 */
 
 /*
