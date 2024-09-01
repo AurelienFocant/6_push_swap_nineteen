@@ -6,7 +6,6 @@ push_swap
 obj*
 
 misc/tags
-*Session.vim
 
 checker
 *.a
