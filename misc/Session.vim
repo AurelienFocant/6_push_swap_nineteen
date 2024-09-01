@@ -1,35 +1,35 @@
 let SessionLoad = 1
 if &cp | set nocp | endif
+nnoremap   za
+nmap <D-v> "*P
+vmap <D-v> "-d"*P
+vmap <D-c> "*y
+vmap <D-x> "*d
 let s:cpo_save=&cpo
 set cpo&vim
-map! <D-v> *
-nnoremap   za
 xmap gx <Plug>NetrwBrowseXVis
 nmap gx <Plug>NetrwBrowseX
+vmap <BS> "-d
 xnoremap <silent> <Plug>NetrwBrowseXVis :call netrw#BrowseXVis()
 nnoremap <silent> <Plug>NetrwBrowseX :call netrw#BrowseX(netrw#GX(),netrw#CheckIfRemote(netrw#GX()))
-vmap <BS> "-d
-vmap <D-x> "*d
-vmap <D-c> "*y
-vmap <D-v> "-d"*P
-nmap <D-v> "*P
-nnoremap Â½ =
-nnoremap Ã¢ b
-nnoremap Ã´ t
-nnoremap Ã¸ x
-nnoremap Ã£ c
-nnoremap Ã¶ v
-nnoremap Ã³ s
-nnoremap Ã— W
-nnoremap Ã· w
-nnoremap ÃŒ L
-nnoremap Ã¬ l
-nnoremap Ã‹ K
-nnoremap Ã« k
-nnoremap ÃŠ J
-nnoremap Ãª j
-nnoremap Ãˆ H
-nnoremap Ã¨ h
+map! <D-v> *
+nnoremap Â½ =
+nnoremap Ã¢ b
+nnoremap Ã´ t
+nnoremap Ã¸ x
+nnoremap Ã£ c
+nnoremap Ã¶ v
+nnoremap Ã³ s
+nnoremap Ã— W
+nnoremap Ã· w
+nnoremap ÃŒ L
+nnoremap Ã¬ l
+nnoremap Ã‹ K
+nnoremap Ã« k
+nnoremap ÃŠ J
+nnoremap Ãª j
+nnoremap Ãˆ H
+nnoremap Ã¨ h
 let &cpo=s:cpo_save
 unlet s:cpo_save
 set background=dark
@@ -39,14 +39,17 @@ set foldlevelstart=0
 set helplang=en
 set hlsearch
 set laststatus=2
+set nomodeline
 set modelines=0
 set mouse=a
+set ruler
 set shiftwidth=4
 set smartindent
 set statusline=\ %F\ %m\ %n
+set suffixes=.bak,~,.swp,.o,.info,.aux,.log,.dvi,.bbl,.blg,.brf,.cb,.ind,.idx,.ilg,.inx,.out,.toc
 set tabstop=4
 set tags=./tags,tags,misc/tags
-set window=0
+set window=1
 let s:so_save = &g:so | let s:siso_save = &g:siso | setg so=0 siso=0 | setl so=-1 siso=-1
 let v:this_session=expand("<sfile>:p")
 silent only
@@ -61,7 +64,9 @@ else
   set shortmess=aoO
 endif
 badd +40 src/main.c
-badd +0 ~/cursus_nineteen/6_push_swap/misc/pseudocode
+badd +1 misc/pseudocode
+badd +1 includes/prototypes_push_swap.h
+badd +0 ~/cursus_nineteen/6_push_swap/includes/push_swap.h
 argglobal
 %argdel
 edit NetrwTreeListing
@@ -85,8 +90,8 @@ set winheight=1
 set winminwidth=0
 set winwidth=1
 exe 'vert 1resize ' . ((&columns * 23 + 119) / 238)
-exe 'vert 2resize ' . ((&columns * 78 + 119) / 238)
-exe 'vert 3resize ' . ((&columns * 135 + 119) / 238)
+exe 'vert 2resize ' . ((&columns * 107 + 119) / 238)
+exe 'vert 3resize ' . ((&columns * 106 + 119) / 238)
 argglobal
 let s:cpo_save=&cpo
 set cpo&vim
@@ -120,8 +125,11 @@ nmap <buffer> <nowait> <silent> <C-R> <Plug>NetrwServerEdit
 nmap <buffer> <nowait> <silent> <C-L> <Plug>NetrwRefresh
 let &cpo=s:cpo_save
 unlet s:cpo_save
+setlocal keymap=
+setlocal noarabic
 setlocal noautoindent
 setlocal backupcopy=
+setlocal balloonexpr=
 setlocal nobinary
 setlocal nobreakindent
 setlocal breakindentopt=
@@ -193,7 +201,7 @@ setlocal listchars=
 setlocal makeencoding=
 setlocal makeprg=
 setlocal matchpairs=(:),{:},[:]
-setlocal modeline
+setlocal nomodeline
 setlocal nomodifiable
 setlocal nrformats=bin,octal,hex
 set number
@@ -207,6 +215,8 @@ setlocal quoteescape=\\
 setlocal readonly
 set relativenumber
 setlocal relativenumber
+setlocal norightleft
+setlocal rightleftcmd=search
 setlocal noscrollbind
 setlocal scrolloff=-1
 setlocal shiftwidth=4
@@ -241,25 +251,30 @@ setlocal thesaurus=
 setlocal thesaurusfunc=
 setlocal noundofile
 setlocal undolevels=-123456
+setlocal varsofttabstop=
+setlocal vartabstop=
 setlocal virtualedit=
 setlocal wincolor=
 setlocal nowinfixheight
 setlocal winfixwidth
 setlocal nowrap
 setlocal wrapmargin=0
-let s:l = 14 - ((13 * winheight(0) + 26) / 53)
+let s:l = 13 - ((12 * winheight(0) + 26) / 53)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 14
+keepjumps 13
 normal! 0
 lcd ~/cursus_nineteen/6_push_swap
 wincmd w
 argglobal
-if bufexists(fnamemodify("~/cursus_nineteen/6_push_swap/misc/pseudocode", ":p")) | buffer ~/cursus_nineteen/6_push_swap/misc/pseudocode | else | edit ~/cursus_nineteen/6_push_swap/misc/pseudocode | endif
-balt ~/cursus_nineteen/6_push_swap/src/main.c
+if bufexists(fnamemodify("~/cursus_nineteen/6_push_swap/includes/push_swap.h", ":p")) | buffer ~/cursus_nineteen/6_push_swap/includes/push_swap.h | else | edit ~/cursus_nineteen/6_push_swap/includes/push_swap.h | endif
+balt ~/cursus_nineteen/6_push_swap/includes/prototypes_push_swap.h
+setlocal keymap=
+setlocal noarabic
 setlocal noautoindent
 setlocal backupcopy=
+setlocal balloonexpr=
 setlocal nobinary
 setlocal nobreakindent
 setlocal breakindentopt=
@@ -290,8 +305,8 @@ setlocal nodiff
 setlocal equalprg=
 setlocal errorformat=
 setlocal noexpandtab
-if &filetype != ''
-setlocal filetype=
+if &filetype != 'cpp'
+setlocal filetype=cpp
 endif
 setlocal fillchars=
 setlocal fixendofline
@@ -331,7 +346,7 @@ setlocal listchars=
 setlocal makeencoding=
 setlocal makeprg=
 setlocal matchpairs=(:),{:},[:]
-setlocal modeline
+setlocal nomodeline
 setlocal modifiable
 setlocal nrformats=bin,octal,hex
 set number
@@ -345,6 +360,8 @@ setlocal quoteescape=\\
 setlocal noreadonly
 set relativenumber
 setlocal relativenumber
+setlocal norightleft
+setlocal rightleftcmd=search
 setlocal noscrollbind
 setlocal scrolloff=-1
 setlocal shiftwidth=4
@@ -364,8 +381,8 @@ setlocal statusline=
 setlocal suffixesadd=
 setlocal swapfile
 setlocal synmaxcol=3000
-if &syntax != ''
-setlocal syntax=
+if &syntax != 'cpp'
+setlocal syntax=cpp
 endif
 setlocal tabstop=4
 setlocal tagcase=
@@ -379,6 +396,8 @@ setlocal thesaurus=
 setlocal thesaurusfunc=
 setlocal noundofile
 setlocal undolevels=-123456
+setlocal varsofttabstop=
+setlocal vartabstop=
 setlocal virtualedit=
 setlocal wincolor=
 setlocal nowinfixheight
@@ -394,9 +413,11 @@ normal! 0
 wincmd w
 argglobal
 if bufexists(fnamemodify("~/cursus_nineteen/6_push_swap/src/main.c", ":p")) | buffer ~/cursus_nineteen/6_push_swap/src/main.c | else | edit ~/cursus_nineteen/6_push_swap/src/main.c | endif
-balt ~/cursus_nineteen/6_push_swap/src/main.c
+setlocal keymap=
+setlocal noarabic
 setlocal noautoindent
 setlocal backupcopy=
+setlocal balloonexpr=netrw#BalloonHelp()
 setlocal nobinary
 setlocal nobreakindent
 setlocal breakindentopt=
@@ -482,6 +503,8 @@ setlocal quoteescape=\\
 setlocal noreadonly
 set relativenumber
 setlocal relativenumber
+setlocal norightleft
+setlocal rightleftcmd=search
 setlocal noscrollbind
 setlocal scrolloff=-1
 setlocal shiftwidth=4
@@ -516,6 +539,8 @@ setlocal thesaurus=
 setlocal thesaurusfunc=
 setlocal noundofile
 setlocal undolevels=-123456
+setlocal varsofttabstop=
+setlocal vartabstop=
 setlocal virtualedit=
 setlocal wincolor=
 setlocal nowinfixheight
@@ -531,10 +556,10 @@ normal! zt
 keepjumps 40
 normal! 0
 wincmd w
-3wincmd w
+2wincmd w
 exe 'vert 1resize ' . ((&columns * 23 + 119) / 238)
-exe 'vert 2resize ' . ((&columns * 78 + 119) / 238)
-exe 'vert 3resize ' . ((&columns * 135 + 119) / 238)
+exe 'vert 2resize ' . ((&columns * 107 + 119) / 238)
+exe 'vert 3resize ' . ((&columns * 106 + 119) / 238)
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0
   silent exe 'bwipe ' . s:wipebuf
