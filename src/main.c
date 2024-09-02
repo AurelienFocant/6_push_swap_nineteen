@@ -216,6 +216,21 @@ void ft_push_cheapest(t_node **stack_from, t_node **stack_to, int name_from, int
 		pa(stack_from, stack_to);
 }
 
+void	ft_last_rotate(t_node **stack_a)
+{
+	t_node	*min;
+
+	min = fn_find_min(*stack_a);
+	while (*stack_a != min)
+	{
+		if (ft_is_above_median(min, *stack_a))
+			ra(stack_a);
+		else
+			rra(stack_a);
+	}
+}
+
+
 void ft_push_swap(t_node **stack_a, t_node **stack_b)
 {
 	int n;
@@ -247,7 +262,7 @@ void ft_push_swap(t_node **stack_a, t_node **stack_b)
 		ft_push_cheapest(stack_b, stack_a, B, A);
 		// ft_print_both_stacks(*stack_a, *stack_b);
 	}
-	// ft_last_rotate(stack_a);
+	ft_last_rotate(stack_a);
 }
 
 int main(int argc, char **argv)
