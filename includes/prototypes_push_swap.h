@@ -31,6 +31,7 @@ unsigned int fn_find_position(t_node *node, t_node *stack);
 void ft_find_target(t_node *node, t_node **stack);
 void ft_find_target_min(t_node *node, t_node **stack);
 void ft_set_targets(t_node **stack_from, t_node **stack_to);
+void ft_set_targets_min(t_node **stack_from, t_node **stack_to);
 int ft_is_above_median(t_node *node, t_node *stack);
 unsigned int fn_count_moves_to_top(t_node *node, t_node *stack);
 int fn_find_cost(t_node *node, t_node **stack_a, t_node **stack_b);
@@ -40,6 +41,7 @@ void ft_rotate_both_stacks(t_node *node, t_node **stack_a, t_node **stack_b);
 void ft_rotate_stack(t_node **stack, t_node *node, int name);
 void ft_rotate_to_top(t_node **stack_from, t_node **stack_to, t_node **cheapest, int name_from, int name_to);
 void ft_push_cheapest(t_node **stack_from, t_node **stack_to, int name_from, int name_to);
+void	ft_last_rotate(t_node **stack_a);
 void ft_push_swap(t_node **stack_a, t_node **stack_b);
 
 /*----------------  errors_utils.c  ---------------*/
