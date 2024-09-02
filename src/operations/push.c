@@ -33,18 +33,14 @@ void	ft_push(t_node **stack_from, t_node **stack_to)
 	ptr = NULL;
 }
 
-void	pb(t_node **stack_a, t_node **stack_b, t_stacklen *stacklen)
+void	pb(t_node **stack_a, t_node **stack_b)
 {
 	ft_push(stack_a, stack_b);
-	stacklen->a--;
-	stacklen->b++;
 	ft_printf("pb\n");
 }
 
-void	pa(t_node **stack_a, t_node **stack_b, t_stacklen *stacklen)
+void	pa(t_node **stack_b, t_node **stack_a)
 {
 	ft_push(stack_b, stack_a);
-	stacklen->a++;
-	stacklen->b--;
 	ft_printf("pa\n");
 }

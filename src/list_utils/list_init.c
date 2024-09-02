@@ -12,17 +12,14 @@
 
 #include "push_swap.h"
 
-void	ft_init_stack(char **argv, t_node **stack_a, t_stacklen *stacklen)
+void	ft_init_stack(char **argv, t_node **stack_a)
 {
 	size_t	i;
 
-	stacklen->a = 0;
-	stacklen->b = 0;
 	i = 1;
 	while (argv[i])
 	{
 		ft_create_node(ft_atoi(argv[i]), stack_a);
-		stacklen->a++;
 		i++;
 	}
 }

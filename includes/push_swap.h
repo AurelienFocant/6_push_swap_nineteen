@@ -22,6 +22,9 @@
 # define FALSE 0
 # define TRUE 1
 
+# define A 0
+# define B 1
+
 typedef struct s_node
 {
 	int				data;
@@ -29,12 +32,6 @@ typedef struct s_node
 	struct s_node	*target;
 	int				cost;
 }					t_node;
-
-typedef struct s_stacklen
-{
-	int	a;
-	int	b;
-}		t_stacklen;
 
 # include "prototypes_push_swap.h"
 

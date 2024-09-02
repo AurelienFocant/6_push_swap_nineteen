@@ -11,8 +11,8 @@ void	rr(t_node **stack_a, t_node **stack_b);
 
 /*----------------  push.c  ---------------*/
 void	ft_push(t_node **stack_from, t_node **stack_to);
-void	pb(t_node **stack_a, t_node **stack_b, t_stacklen *stacklen);
-void	pa(t_node **stack_a, t_node **stack_b, t_stacklen *stacklen);
+void	pb(t_node **stack_a, t_node **stack_b);
+void	pa(t_node **stack_b, t_node **stack_a);
 
 /*----------------  reverse_rotate.c  ---------------*/
 void	ft_reverse_rotate(t_node **stack);
@@ -26,20 +26,21 @@ void	sa(t_node **stack_a);
 void	sb(t_node **stack_b);
 void	ss(t_node **stack_a, t_node **stack_b);
 
-/*----------------  push_swap_main.c  ---------------*/
-int	fn_find_target(int data, t_node **stack_b);
-void	fn_set_targets(t_node **stack_a, t_node **stack_b);
-unsigned int	fn_find_position(int value, t_node *stack);
-unsigned int	fn_count_moves_to_top(int value, t_node *stack);
-int	fn_find_cost(t_node *node, t_node **stack_a, t_node **stack_b);
-void	fn_set_cost(t_node **stack_a, t_node **stack_b);
-void	fn_push_swap(t_node **stack_a, t_node **stack_b);
-
 /*----------------  main.c  ---------------*/
-void	ft_find_target(t_node *node, t_node **stack);
-void	ft_set_targets(t_node **stack_from, t_node **stack_to, t_stacklen *stacklen);
-void	ft_push_swap(t_node **stack_a, t_node **stack_b, t_stacklen *stacklen);
-void	ft_test_lists(t_node **stack_a, t_node **stack_b, t_stacklen *stacklen);
+unsigned int fn_find_position(t_node *node, t_node *stack);
+void ft_find_target(t_node *node, t_node **stack);
+void ft_find_target_min(t_node *node, t_node **stack);
+void ft_set_targets(t_node **stack_from, t_node **stack_to);
+int ft_is_above_median(t_node *node, t_node *stack);
+unsigned int fn_count_moves_to_top(t_node *node, t_node *stack);
+int fn_find_cost(t_node *node, t_node **stack_a, t_node **stack_b);
+void ft_set_costs(t_node **stack_a, t_node **stack_b);
+t_node *ft_find_cheapest(t_node **stack);
+void ft_rotate_both_stacks(t_node *node, t_node **stack_a, t_node **stack_b);
+void ft_rotate_stack(t_node **stack, t_node *node, int name);
+void ft_rotate_to_top(t_node **stack_from, t_node **stack_to, t_node **cheapest, int name_from, int name_to);
+void ft_push_cheapest(t_node **stack_from, t_node **stack_to, int name_from, int name_to);
+void ft_push_swap(t_node **stack_a, t_node **stack_b);
 
 /*----------------  errors_utils.c  ---------------*/
 void	fn_error_exit(char *msg, int exitcode);
@@ -64,7 +65,7 @@ void	ft_print_stack(t_node *stack, char *name);
 void	ft_print_both_stacks(t_node *stack_a, t_node *stack_b);
 
 /*----------------  list_init.c  ---------------*/
-void	ft_init_stack(char **argv, t_node **stack_a, t_stacklen *stacklen);
+void	ft_init_stack(char **argv, t_node **stack_a);
 void	ft_create_node(int data, t_node **stack_a);
 void	ft_free_linkedlist(t_node *lst);
 void	ft_free_lists(t_node *stack_a, t_node *stack_b);

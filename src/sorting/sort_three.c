@@ -56,14 +56,14 @@ t_node	*fn_find_min(t_node *stack)
 
 int	fn_sort_three(t_node **stack)
 {
-	int	max;
+	t_node	*max;
 
 	if (fn_is_sorted(*stack))
 			return (TRUE);
 	max = fn_find_max(*stack);
-	if ((*stack)->data == max)
+	if (*stack == max)
 		ra(stack);
-	else if ((*stack)->next->data == max)
+	else if ((*stack)->next == max)
 		rra(stack);
 	if (!fn_is_sorted(*stack))
 		sa(stack);
