@@ -6,7 +6,7 @@
 /*   By: afocant <afocant@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 19:19:13 by afocant           #+#    #+#             */
-/*   Updated: 2024/08/22 20:32:05 by afocant          ###   ########.fr       */
+/*   Updated: 2024/09/03 20:24:00 by afocant          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,19 +16,17 @@ t_node	*fn_find_max(t_node *stack)
 {
 	t_node	*res;
 	int		max;
-	t_node	*ptr;
 
 	res = NULL;
 	max = INT_MIN;
-	ptr = stack;
-	while (ptr)
+	while (stack)
 	{
-		if (ptr->data > max)
+		if (stack->data > max)
 		{
-			max = ptr->data;
-			res = ptr;
+			max = stack->data;
+			res = stack;
 		}
-		ptr = ptr->next;
+		stack = stack->next;
 	}
 	return (res);
 }
@@ -36,20 +34,18 @@ t_node	*fn_find_max(t_node *stack)
 t_node	*fn_find_min(t_node *stack)
 {
 	t_node	*res;
-	int	min;
-	t_node	*ptr;
+	int		min;
 
 	res = NULL;
 	min = INT_MAX;
-	ptr = stack;
-	while (ptr)
+	while (stack)
 	{
-		if (ptr->data < min)
+		if (stack->data < min)
 		{
-			min = ptr->data;
-			res = ptr;
+			min = stack->data;
+			res = stack;
 		}
-		ptr = ptr->next;
+		stack = stack->next;
 	}
 	return (res);
 }
@@ -59,7 +55,7 @@ int	fn_sort_three(t_node **stack)
 	t_node	*max;
 
 	if (fn_is_sorted(*stack))
-			return (TRUE);
+		return (TRUE);
 	max = fn_find_max(*stack);
 	if (*stack == max)
 		ra(stack);

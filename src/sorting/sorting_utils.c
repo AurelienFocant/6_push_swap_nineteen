@@ -6,25 +6,23 @@
 /*   By: afocant <afocant@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 20:00:18 by afocant           #+#    #+#             */
-/*   Updated: 2024/08/22 20:01:46 by afocant          ###   ########.fr       */
+/*   Updated: 2024/09/03 20:25:36 by afocant          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	fn_is_sorted(t_node *stack_a)
+int	fn_is_sorted(t_node *stack)
 {
 	int		min;
-	t_node *ptr;
 
 	min = INT_MIN;
-	ptr = stack_a;
-	while (ptr)
+	while (stack)
 	{
-		if (ptr->data < min)
+		if (stack->data < min)
 			return (FALSE);
-		min = ptr->data;
-		ptr = ptr->next;
+		min = stack->data;
+		stack = stack->next;
 	}
 	return (TRUE);
 }

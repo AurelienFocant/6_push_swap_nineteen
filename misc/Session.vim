@@ -9,8 +9,11 @@ vmap <D-v> "-d"*P
 vmap <D-c> "*y
 vmap <D-x> "*d
 xmap gx <Plug>NetrwBrowseXVis
+smap gx <Plug>NetrwBrowseXVis
 nmap gx <Plug>NetrwBrowseX
 xnoremap <silent> <Plug>NetrwBrowseXVis :call netrw#BrowseXVis()
+nmap <F1> :Stdheader
+snoremap <silent> <Plug>NetrwBrowseXVis :call netrw#BrowseXVis()
 nnoremap <silent> <Plug>NetrwBrowseX :call netrw#BrowseX(netrw#GX(),netrw#CheckIfRemote(netrw#GX()))
 vmap <BS> "-d
 vmap <D-x> "*d
@@ -40,15 +43,22 @@ unlet s:cpo_save
 set background=dark
 set backspace=2
 set fileencodings=ucs-bom,utf-8,default,latin1
+set fillchars=
 set foldlevelstart=0
 set helplang=en
+set hidden
 set hlsearch
+set ignorecase
+set incsearch
 set laststatus=2
+set listchars=
 set nomodeline
 set modelines=0
 set mouse=a
 set ruler
 set shiftwidth=4
+set showmatch
+set smartcase
 set smartindent
 set statusline=\ %F\ %m\ %n
 set suffixes=.bak,~,.swp,.o,.info,.aux,.log,.dvi,.bbl,.blg,.brf,.cb,.ind,.idx,.ilg,.inx,.out,.toc
@@ -57,7 +67,7 @@ set tags=./tags,tags,misc/tags
 set window=1
 set winminheight=0
 set winminwidth=0
-let s:so_save = &g:so | let s:siso_save = &g:siso | setg so=0 siso=0 | setl so=-1 siso=-1
+let s:so_save = &so | let s:siso_save = &siso | set so=0 siso=0
 let v:this_session=expand("<sfile>:p")
 silent only
 silent tabonly
@@ -65,44 +75,32 @@ cd ~/cursus_nineteen/6_push_swap
 if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
-if &shortmess =~ 'A'
-  set shortmess=aoOA
-else
-  set shortmess=aoO
-endif
-badd +47 src/main.c
-badd +2 misc/pseudocode
-badd +1 includes/prototypes_push_swap.h
-badd +31 includes/push_swap.h
-badd +42 src/operations/push.c
-badd +16 src/sorting/sort_three.c
-badd +23 src/list_utils/list_init.c
-badd +141 misc/push_swap_main.c
+set shortmess=aoO
 argglobal
 %argdel
 set stal=2
-tabnew +setlocal\ bufhidden=wipe
-tabnew +setlocal\ bufhidden=wipe
+tabnew
+tabnew
 tabrewind
 edit NetrwTreeListing
-let s:save_splitbelow = &splitbelow
-let s:save_splitright = &splitright
 set splitbelow splitright
 wincmd _ | wincmd |
 vsplit
-1wincmd h
+wincmd _ | wincmd |
+vsplit
+2wincmd h
 wincmd w
-let &splitbelow = s:save_splitbelow
-let &splitright = s:save_splitright
+wincmd w
+set nosplitbelow
+set nosplitright
 wincmd t
-let s:save_winminheight = &winminheight
-let s:save_winminwidth = &winminwidth
 set winminheight=0
 set winheight=1
 set winminwidth=0
 set winwidth=1
-exe 'vert 1resize ' . ((&columns * 23 + 119) / 238)
-exe 'vert 2resize ' . ((&columns * 214 + 119) / 238)
+exe 'vert 1resize ' . ((&columns * 31 + 158) / 316)
+exe 'vert 2resize ' . ((&columns * 141 + 158) / 316)
+exe 'vert 3resize ' . ((&columns * 142 + 158) / 316)
 argglobal
 let s:cpo_save=&cpo
 set cpo&vim
@@ -141,20 +139,17 @@ setlocal backupcopy=
 setlocal nobinary
 setlocal nobreakindent
 setlocal breakindentopt=
-setlocal bufhidden=wipe
+setlocal bufhidden=hide
 setlocal nobuflisted
 setlocal buftype=
 setlocal nocindent
 setlocal cinkeys=0{,0},0),0],:,0#,!^F,o,O,e
 setlocal cinoptions=
-setlocal cinscopedecls=public,protected,private
 setlocal cinwords=if,else,while,do,for,switch
 setlocal colorcolumn=
 setlocal comments=s1:/*,mb:*,ex:*/,://,b:#,:%,:XCOMM,n:>,fb:-
 setlocal commentstring=/*%s*/
 setlocal complete=.,w,b,u,t,i
-setlocal concealcursor=
-setlocal conceallevel=0
 setlocal completefunc=
 setlocal nocopyindent
 setlocal cryptmethod=
@@ -171,7 +166,6 @@ setlocal noexpandtab
 if &filetype != 'netrw'
 setlocal filetype=netrw
 endif
-setlocal fillchars=
 setlocal fixendofline
 set foldcolumn=1
 setlocal foldcolumn=1
@@ -202,10 +196,8 @@ setlocal iskeyword=@,48-57,_,192-255
 setlocal keywordprg=
 setlocal nolinebreak
 setlocal nolisp
-setlocal lispoptions=
 setlocal lispwords=
 setlocal nolist
-setlocal listchars=
 setlocal makeencoding=
 setlocal makeprg=
 setlocal matchpairs=(:),{:},[:]
@@ -231,13 +223,11 @@ setlocal showbreak=
 setlocal sidescrolloff=-1
 setlocal signcolumn=auto
 setlocal smartindent
-setlocal nosmoothscroll
 setlocal softtabstop=0
 setlocal nospell
 setlocal spellcapcheck=[.?!]\\_[\\])'\"\	\ ]\\+
 setlocal spellfile=
 setlocal spelllang=en
-setlocal spelloptions=
 setlocal statusline=
 setlocal suffixesadd=
 setlocal noswapfile
@@ -254,26 +244,23 @@ setlocal termwinscroll=10000
 setlocal termwinsize=
 setlocal textwidth=0
 setlocal thesaurus=
-setlocal thesaurusfunc=
 setlocal noundofile
 setlocal undolevels=-123456
-setlocal virtualedit=
 setlocal wincolor=
 setlocal nowinfixheight
 setlocal winfixwidth
 setlocal nowrap
 setlocal wrapmargin=0
-let s:l = 1 - ((0 * winheight(0) + 26) / 52)
+let s:l = 15 - ((14 * winheight(0) + 36) / 72)
 if s:l < 1 | let s:l = 1 | endif
-keepjumps exe s:l
+exe s:l
 normal! zt
-keepjumps 1
+15
 normal! 0
 lcd ~/cursus_nineteen/6_push_swap
 wincmd w
 argglobal
-if bufexists(fnamemodify("~/cursus_nineteen/6_push_swap/src/main.c", ":p")) | buffer ~/cursus_nineteen/6_push_swap/src/main.c | else | edit ~/cursus_nineteen/6_push_swap/src/main.c | endif
-balt ~/cursus_nineteen/6_push_swap/src/sorting/sort_three.c
+if bufexists("~/cursus_nineteen/6_push_swap/src/turk_algo/push_cheapest.c") | buffer ~/cursus_nineteen/6_push_swap/src/turk_algo/push_cheapest.c | else | edit ~/cursus_nineteen/6_push_swap/src/turk_algo/push_cheapest.c | endif
 setlocal noautoindent
 setlocal backupcopy=
 setlocal nobinary
@@ -282,17 +269,14 @@ setlocal breakindentopt=
 setlocal bufhidden=
 setlocal buflisted
 setlocal buftype=
-setlocal nocindent
+setlocal cindent
 setlocal cinkeys=0{,0},0),0],:,0#,!^F,o,O,e
 setlocal cinoptions=
-setlocal cinscopedecls=public,protected,private
 setlocal cinwords=if,else,while,do,for,switch
 setlocal colorcolumn=
-setlocal comments=s1:/*,mb:*,ex:*/,://,b:#,:%,:XCOMM,n:>,fb:-
+setlocal comments=sO:*\ -,mO:*\ \ ,exO:*/,s1:/*,mb:*,ex:*/,://
 setlocal commentstring=/*%s*/
 setlocal complete=.,w,b,u,t,i
-setlocal concealcursor=
-setlocal conceallevel=0
 setlocal completefunc=
 setlocal nocopyindent
 setlocal cryptmethod=
@@ -309,7 +293,132 @@ setlocal noexpandtab
 if &filetype != 'c'
 setlocal filetype=c
 endif
-setlocal fillchars=
+setlocal fixendofline
+set foldcolumn=1
+setlocal foldcolumn=1
+setlocal foldenable
+setlocal foldexpr=0
+setlocal foldignore=#
+setlocal foldlevel=0
+setlocal foldmarker={{{,}}}
+set foldmethod=syntax
+setlocal foldmethod=syntax
+setlocal foldminlines=1
+set foldnestmax=1
+setlocal foldnestmax=1
+setlocal foldtext=foldtext()
+setlocal formatexpr=
+setlocal formatoptions=croql
+setlocal formatlistpat=^\\s*\\d\\+[\\]:.)}\\t\ ]\\s*
+setlocal formatprg=
+setlocal grepprg=
+setlocal iminsert=0
+setlocal imsearch=-1
+setlocal include=
+setlocal includeexpr=
+setlocal indentexpr=
+setlocal indentkeys=0{,0},0),0],:,0#,!^F,o,O,e
+setlocal noinfercase
+setlocal iskeyword=@,48-57,_,192-255
+setlocal keywordprg=
+setlocal nolinebreak
+setlocal nolisp
+setlocal lispwords=
+setlocal nolist
+setlocal makeencoding=
+setlocal makeprg=
+setlocal matchpairs=(:),{:},[:]
+setlocal nomodeline
+setlocal modifiable
+setlocal nrformats=bin,octal,hex
+set number
+setlocal number
+setlocal numberwidth=4
+setlocal omnifunc=ccomplete#Complete
+setlocal path=
+setlocal nopreserveindent
+setlocal nopreviewwindow
+setlocal quoteescape=\\
+setlocal noreadonly
+set relativenumber
+setlocal relativenumber
+setlocal noscrollbind
+setlocal scrolloff=-1
+setlocal shiftwidth=4
+setlocal noshortname
+setlocal showbreak=
+setlocal sidescrolloff=-1
+setlocal signcolumn=auto
+setlocal smartindent
+setlocal softtabstop=0
+setlocal nospell
+setlocal spellcapcheck=[.?!]\\_[\\])'\"\	\ ]\\+
+setlocal spellfile=
+setlocal spelllang=en
+setlocal statusline=
+setlocal suffixesadd=
+setlocal swapfile
+setlocal synmaxcol=3000
+if &syntax != 'c'
+setlocal syntax=c
+endif
+setlocal tabstop=4
+setlocal tagcase=
+setlocal tagfunc=
+setlocal tags=
+setlocal termwinkey=
+setlocal termwinscroll=10000
+setlocal termwinsize=
+setlocal textwidth=0
+setlocal thesaurus=
+setlocal noundofile
+setlocal undolevels=-123456
+setlocal wincolor=
+setlocal nowinfixheight
+setlocal nowinfixwidth
+setlocal wrap
+setlocal wrapmargin=0
+let s:l = 77 - ((75 * winheight(0) + 36) / 72)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+77
+normal! 0
+wincmd w
+argglobal
+if bufexists("~/cursus_nineteen/6_push_swap/src/main.c") | buffer ~/cursus_nineteen/6_push_swap/src/main.c | else | edit ~/cursus_nineteen/6_push_swap/src/main.c | endif
+setlocal noautoindent
+setlocal backupcopy=
+setlocal nobinary
+setlocal nobreakindent
+setlocal breakindentopt=
+setlocal bufhidden=
+setlocal buflisted
+setlocal buftype=
+setlocal nocindent
+setlocal cinkeys=0{,0},0),0],:,0#,!^F,o,O,e
+setlocal cinoptions=
+setlocal cinwords=if,else,while,do,for,switch
+setlocal colorcolumn=
+setlocal comments=s1:/*,mb:*,ex:*/,://,b:#,:%,:XCOMM,n:>,fb:-
+setlocal commentstring=/*%s*/
+setlocal complete=.,w,b,u,t,i
+setlocal completefunc=
+setlocal nocopyindent
+setlocal cryptmethod=
+setlocal nocursorbind
+setlocal nocursorcolumn
+setlocal nocursorline
+setlocal cursorlineopt=both
+setlocal define=
+setlocal dictionary=
+setlocal nodiff
+setlocal equalprg=
+setlocal errorformat=
+setlocal noexpandtab
+if &filetype != 'c'
+setlocal filetype=c
+endif
 setlocal fixendofline
 set foldcolumn=1
 setlocal foldcolumn=1
@@ -340,10 +449,8 @@ setlocal iskeyword=@,48-57,_,192-255
 setlocal keywordprg=
 setlocal nolinebreak
 setlocal nolisp
-setlocal lispoptions=
 setlocal lispwords=
 setlocal nolist
-setlocal listchars=
 setlocal makeencoding=
 setlocal makeprg=
 setlocal matchpairs=(:),{:},[:]
@@ -369,13 +476,11 @@ setlocal showbreak=
 setlocal sidescrolloff=-1
 setlocal signcolumn=auto
 setlocal smartindent
-setlocal nosmoothscroll
 setlocal softtabstop=0
 setlocal nospell
 setlocal spellcapcheck=[.?!]\\_[\\])'\"\	\ ]\\+
 setlocal spellfile=
 setlocal spelllang=en
-setlocal spelloptions=
 setlocal statusline=
 setlocal suffixesadd=
 setlocal swapfile
@@ -392,57 +497,44 @@ setlocal termwinscroll=10000
 setlocal termwinsize=
 setlocal textwidth=0
 setlocal thesaurus=
-setlocal thesaurusfunc=
 setlocal noundofile
 setlocal undolevels=-123456
-setlocal virtualedit=
 setlocal wincolor=
 setlocal nowinfixheight
 setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
-31
+60
 normal! zo
-51
+89
 normal! zo
-115
-normal! zo
-166
-normal! zo
-176
-normal! zo
-188
-normal! zo
-let s:l = 58 - ((57 * winheight(0) + 26) / 52)
+let s:l = 101 - ((88 * winheight(0) + 36) / 72)
 if s:l < 1 | let s:l = 1 | endif
-keepjumps exe s:l
+exe s:l
 normal! zt
-keepjumps 58
+101
 normal! 09|
 wincmd w
-2wincmd w
-exe 'vert 1resize ' . ((&columns * 23 + 119) / 238)
-exe 'vert 2resize ' . ((&columns * 214 + 119) / 238)
+3wincmd w
+exe 'vert 1resize ' . ((&columns * 31 + 158) / 316)
+exe 'vert 2resize ' . ((&columns * 141 + 158) / 316)
+exe 'vert 3resize ' . ((&columns * 142 + 158) / 316)
 tabnext
 edit ~/cursus_nineteen/6_push_swap/NetrwTreeListing
-let s:save_splitbelow = &splitbelow
-let s:save_splitright = &splitright
 set splitbelow splitright
 wincmd _ | wincmd |
 vsplit
 1wincmd h
 wincmd w
-let &splitbelow = s:save_splitbelow
-let &splitright = s:save_splitright
+set nosplitbelow
+set nosplitright
 wincmd t
-let s:save_winminheight = &winminheight
-let s:save_winminwidth = &winminwidth
 set winminheight=0
 set winheight=1
 set winminwidth=0
 set winwidth=1
-exe 'vert 1resize ' . ((&columns * 23 + 119) / 238)
-exe 'vert 2resize ' . ((&columns * 214 + 119) / 238)
+exe 'vert 1resize ' . ((&columns * 31 + 158) / 316)
+exe 'vert 2resize ' . ((&columns * 284 + 158) / 316)
 argglobal
 let s:cpo_save=&cpo
 set cpo&vim
@@ -481,20 +573,17 @@ setlocal backupcopy=
 setlocal nobinary
 setlocal nobreakindent
 setlocal breakindentopt=
-setlocal bufhidden=wipe
+setlocal bufhidden=hide
 setlocal nobuflisted
 setlocal buftype=
 setlocal nocindent
 setlocal cinkeys=0{,0},0),0],:,0#,!^F,o,O,e
 setlocal cinoptions=
-setlocal cinscopedecls=public,protected,private
 setlocal cinwords=if,else,while,do,for,switch
 setlocal colorcolumn=
 setlocal comments=s1:/*,mb:*,ex:*/,://,b:#,:%,:XCOMM,n:>,fb:-
 setlocal commentstring=/*%s*/
 setlocal complete=.,w,b,u,t,i
-setlocal concealcursor=
-setlocal conceallevel=0
 setlocal completefunc=
 setlocal nocopyindent
 setlocal cryptmethod=
@@ -511,7 +600,6 @@ setlocal noexpandtab
 if &filetype != 'netrw'
 setlocal filetype=netrw
 endif
-setlocal fillchars=
 setlocal fixendofline
 set foldcolumn=1
 setlocal foldcolumn=1
@@ -542,10 +630,8 @@ setlocal iskeyword=@,48-57,_,192-255
 setlocal keywordprg=
 setlocal nolinebreak
 setlocal nolisp
-setlocal lispoptions=
 setlocal lispwords=
 setlocal nolist
-setlocal listchars=
 setlocal makeencoding=
 setlocal makeprg=
 setlocal matchpairs=(:),{:},[:]
@@ -571,13 +657,11 @@ setlocal showbreak=
 setlocal sidescrolloff=-1
 setlocal signcolumn=auto
 setlocal smartindent
-setlocal nosmoothscroll
 setlocal softtabstop=0
 setlocal nospell
 setlocal spellcapcheck=[.?!]\\_[\\])'\"\	\ ]\\+
 setlocal spellfile=
 setlocal spelllang=en
-setlocal spelloptions=
 setlocal statusline=
 setlocal suffixesadd=
 setlocal noswapfile
@@ -594,26 +678,23 @@ setlocal termwinscroll=10000
 setlocal termwinsize=
 setlocal textwidth=0
 setlocal thesaurus=
-setlocal thesaurusfunc=
 setlocal noundofile
 setlocal undolevels=-123456
-setlocal virtualedit=
 setlocal wincolor=
 setlocal nowinfixheight
 setlocal winfixwidth
 setlocal nowrap
 setlocal wrapmargin=0
-let s:l = 1 - ((0 * winheight(0) + 26) / 52)
+let s:l = 1 - ((0 * winheight(0) + 37) / 74)
 if s:l < 1 | let s:l = 1 | endif
-keepjumps exe s:l
+exe s:l
 normal! zt
-keepjumps 1
+1
 normal! 0
 lcd ~/cursus_nineteen/6_push_swap
 wincmd w
 argglobal
-if bufexists(fnamemodify("~/cursus_nineteen/6_push_swap/misc/pseudocode", ":p")) | buffer ~/cursus_nineteen/6_push_swap/misc/pseudocode | else | edit ~/cursus_nineteen/6_push_swap/misc/pseudocode | endif
-balt ~/cursus_nineteen/6_push_swap/misc/push_swap_main.c
+if bufexists("~/cursus_nineteen/6_push_swap/misc/pseudocode") | buffer ~/cursus_nineteen/6_push_swap/misc/pseudocode | else | edit ~/cursus_nineteen/6_push_swap/misc/pseudocode | endif
 setlocal noautoindent
 setlocal backupcopy=
 setlocal nobinary
@@ -625,14 +706,11 @@ setlocal buftype=
 setlocal nocindent
 setlocal cinkeys=0{,0},0),0],:,0#,!^F,o,O,e
 setlocal cinoptions=
-setlocal cinscopedecls=public,protected,private
 setlocal cinwords=if,else,while,do,for,switch
 setlocal colorcolumn=
 setlocal comments=s1:/*,mb:*,ex:*/,://,b:#,:%,:XCOMM,n:>,fb:-
 setlocal commentstring=/*%s*/
 setlocal complete=.,w,b,u,t,i
-setlocal concealcursor=
-setlocal conceallevel=0
 setlocal completefunc=
 setlocal nocopyindent
 setlocal cryptmethod=
@@ -649,7 +727,6 @@ setlocal noexpandtab
 if &filetype != ''
 setlocal filetype=
 endif
-setlocal fillchars=
 setlocal fixendofline
 set foldcolumn=1
 setlocal foldcolumn=1
@@ -680,10 +757,8 @@ setlocal iskeyword=@,48-57,_,192-255
 setlocal keywordprg=
 setlocal nolinebreak
 setlocal nolisp
-setlocal lispoptions=
 setlocal lispwords=
 setlocal nolist
-setlocal listchars=
 setlocal makeencoding=
 setlocal makeprg=
 setlocal matchpairs=(:),{:},[:]
@@ -709,13 +784,11 @@ setlocal showbreak=
 setlocal sidescrolloff=-1
 setlocal signcolumn=auto
 setlocal smartindent
-setlocal nosmoothscroll
 setlocal softtabstop=0
 setlocal nospell
 setlocal spellcapcheck=[.?!]\\_[\\])'\"\	\ ]\\+
 setlocal spellfile=
 setlocal spelllang=en
-setlocal spelloptions=
 setlocal statusline=
 setlocal suffixesadd=
 setlocal swapfile
@@ -732,29 +805,25 @@ setlocal termwinscroll=10000
 setlocal termwinsize=
 setlocal textwidth=0
 setlocal thesaurus=
-setlocal thesaurusfunc=
 setlocal noundofile
 setlocal undolevels=-123456
-setlocal virtualedit=
 setlocal wincolor=
 setlocal nowinfixheight
 setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
-let s:l = 1 - ((0 * winheight(0) + 26) / 52)
+let s:l = 1 - ((0 * winheight(0) + 37) / 74)
 if s:l < 1 | let s:l = 1 | endif
-keepjumps exe s:l
+exe s:l
 normal! zt
-keepjumps 1
+1
 normal! 0
 lcd ~/cursus_nineteen/6_push_swap
 wincmd w
-exe 'vert 1resize ' . ((&columns * 23 + 119) / 238)
-exe 'vert 2resize ' . ((&columns * 214 + 119) / 238)
+exe 'vert 1resize ' . ((&columns * 31 + 158) / 316)
+exe 'vert 2resize ' . ((&columns * 284 + 158) / 316)
 tabnext
 edit ~/cursus_nineteen/6_push_swap/NetrwTreeListing
-let s:save_splitbelow = &splitbelow
-let s:save_splitright = &splitright
 set splitbelow splitright
 wincmd _ | wincmd |
 vsplit
@@ -763,18 +832,16 @@ vsplit
 2wincmd h
 wincmd w
 wincmd w
-let &splitbelow = s:save_splitbelow
-let &splitright = s:save_splitright
+set nosplitbelow
+set nosplitright
 wincmd t
-let s:save_winminheight = &winminheight
-let s:save_winminwidth = &winminwidth
 set winminheight=0
 set winheight=1
 set winminwidth=0
 set winwidth=1
-exe 'vert 1resize ' . ((&columns * 23 + 119) / 238)
-exe 'vert 2resize ' . ((&columns * 106 + 119) / 238)
-exe 'vert 3resize ' . ((&columns * 107 + 119) / 238)
+exe 'vert 1resize ' . ((&columns * 31 + 158) / 316)
+exe 'vert 2resize ' . ((&columns * 141 + 158) / 316)
+exe 'vert 3resize ' . ((&columns * 142 + 158) / 316)
 argglobal
 let s:cpo_save=&cpo
 set cpo&vim
@@ -813,20 +880,17 @@ setlocal backupcopy=
 setlocal nobinary
 setlocal nobreakindent
 setlocal breakindentopt=
-setlocal bufhidden=wipe
+setlocal bufhidden=hide
 setlocal nobuflisted
 setlocal buftype=
 setlocal nocindent
 setlocal cinkeys=0{,0},0),0],:,0#,!^F,o,O,e
 setlocal cinoptions=
-setlocal cinscopedecls=public,protected,private
 setlocal cinwords=if,else,while,do,for,switch
 setlocal colorcolumn=
 setlocal comments=s1:/*,mb:*,ex:*/,://,b:#,:%,:XCOMM,n:>,fb:-
 setlocal commentstring=/*%s*/
 setlocal complete=.,w,b,u,t,i
-setlocal concealcursor=
-setlocal conceallevel=0
 setlocal completefunc=
 setlocal nocopyindent
 setlocal cryptmethod=
@@ -843,7 +907,6 @@ setlocal noexpandtab
 if &filetype != 'netrw'
 setlocal filetype=netrw
 endif
-setlocal fillchars=
 setlocal fixendofline
 set foldcolumn=1
 setlocal foldcolumn=1
@@ -874,10 +937,8 @@ setlocal iskeyword=@,48-57,_,192-255
 setlocal keywordprg=
 setlocal nolinebreak
 setlocal nolisp
-setlocal lispoptions=
 setlocal lispwords=
 setlocal nolist
-setlocal listchars=
 setlocal makeencoding=
 setlocal makeprg=
 setlocal matchpairs=(:),{:},[:]
@@ -903,13 +964,11 @@ setlocal showbreak=
 setlocal sidescrolloff=-1
 setlocal signcolumn=auto
 setlocal smartindent
-setlocal nosmoothscroll
 setlocal softtabstop=0
 setlocal nospell
 setlocal spellcapcheck=[.?!]\\_[\\])'\"\	\ ]\\+
 setlocal spellfile=
 setlocal spelllang=en
-setlocal spelloptions=
 setlocal statusline=
 setlocal suffixesadd=
 setlocal noswapfile
@@ -926,25 +985,23 @@ setlocal termwinscroll=10000
 setlocal termwinsize=
 setlocal textwidth=0
 setlocal thesaurus=
-setlocal thesaurusfunc=
 setlocal noundofile
 setlocal undolevels=-123456
-setlocal virtualedit=
 setlocal wincolor=
 setlocal nowinfixheight
 setlocal winfixwidth
 setlocal nowrap
 setlocal wrapmargin=0
-let s:l = 1 - ((0 * winheight(0) + 26) / 52)
+let s:l = 1 - ((0 * winheight(0) + 37) / 74)
 if s:l < 1 | let s:l = 1 | endif
-keepjumps exe s:l
+exe s:l
 normal! zt
-keepjumps 1
+1
 normal! 0
 lcd ~/cursus_nineteen/6_push_swap
 wincmd w
 argglobal
-if bufexists(fnamemodify("~/cursus_nineteen/6_push_swap/src/operations/push.c", ":p")) | buffer ~/cursus_nineteen/6_push_swap/src/operations/push.c | else | edit ~/cursus_nineteen/6_push_swap/src/operations/push.c | endif
+if bufexists("~/cursus_nineteen/6_push_swap/src/operations/push.c") | buffer ~/cursus_nineteen/6_push_swap/src/operations/push.c | else | edit ~/cursus_nineteen/6_push_swap/src/operations/push.c | endif
 setlocal noautoindent
 setlocal backupcopy=
 setlocal nobinary
@@ -956,14 +1013,11 @@ setlocal buftype=
 setlocal nocindent
 setlocal cinkeys=0{,0},0),0],:,0#,!^F,o,O,e
 setlocal cinoptions=
-setlocal cinscopedecls=public,protected,private
 setlocal cinwords=if,else,while,do,for,switch
 setlocal colorcolumn=
 setlocal comments=s1:/*,mb:*,ex:*/,://,b:#,:%,:XCOMM,n:>,fb:-
 setlocal commentstring=/*%s*/
 setlocal complete=.,w,b,u,t,i
-setlocal concealcursor=
-setlocal conceallevel=0
 setlocal completefunc=
 setlocal nocopyindent
 setlocal cryptmethod=
@@ -980,7 +1034,6 @@ setlocal noexpandtab
 if &filetype != 'c'
 setlocal filetype=c
 endif
-setlocal fillchars=
 setlocal fixendofline
 set foldcolumn=1
 setlocal foldcolumn=1
@@ -1011,10 +1064,8 @@ setlocal iskeyword=@,48-57,_,192-255
 setlocal keywordprg=
 setlocal nolinebreak
 setlocal nolisp
-setlocal lispoptions=
 setlocal lispwords=
 setlocal nolist
-setlocal listchars=
 setlocal makeencoding=
 setlocal makeprg=
 setlocal matchpairs=(:),{:},[:]
@@ -1040,13 +1091,11 @@ setlocal showbreak=
 setlocal sidescrolloff=-1
 setlocal signcolumn=auto
 setlocal smartindent
-setlocal nosmoothscroll
 setlocal softtabstop=0
 setlocal nospell
 setlocal spellcapcheck=[.?!]\\_[\\])'\"\	\ ]\\+
 setlocal spellfile=
 setlocal spelllang=en
-setlocal spelloptions=
 setlocal statusline=
 setlocal suffixesadd=
 setlocal swapfile
@@ -1063,10 +1112,8 @@ setlocal termwinscroll=10000
 setlocal termwinsize=
 setlocal textwidth=0
 setlocal thesaurus=
-setlocal thesaurusfunc=
 setlocal noundofile
 setlocal undolevels=-123456
-setlocal virtualedit=
 setlocal wincolor=
 setlocal nowinfixheight
 setlocal nowinfixwidth
@@ -1076,17 +1123,16 @@ setlocal wrapmargin=0
 normal! zo
 43
 normal! zo
-let s:l = 38 - ((37 * winheight(0) + 26) / 52)
+let s:l = 38 - ((37 * winheight(0) + 37) / 74)
 if s:l < 1 | let s:l = 1 | endif
-keepjumps exe s:l
+exe s:l
 normal! zt
-keepjumps 38
+38
 normal! 030|
 lcd ~/cursus_nineteen/6_push_swap
 wincmd w
 argglobal
-if bufexists(fnamemodify("~/cursus_nineteen/6_push_swap/includes/push_swap.h", ":p")) | buffer ~/cursus_nineteen/6_push_swap/includes/push_swap.h | else | edit ~/cursus_nineteen/6_push_swap/includes/push_swap.h | endif
-balt ~/cursus_nineteen/6_push_swap/src/operations/push.c
+if bufexists("~/cursus_nineteen/6_push_swap/includes/push_swap.h") | buffer ~/cursus_nineteen/6_push_swap/includes/push_swap.h | else | edit ~/cursus_nineteen/6_push_swap/includes/push_swap.h | endif
 setlocal noautoindent
 setlocal backupcopy=
 setlocal nobinary
@@ -1098,14 +1144,11 @@ setlocal buftype=
 setlocal nocindent
 setlocal cinkeys=0{,0},0),0],:,0#,!^F,o,O,e
 setlocal cinoptions=
-setlocal cinscopedecls=public,protected,private
 setlocal cinwords=if,else,while,do,for,switch
 setlocal colorcolumn=
 setlocal comments=s1:/*,mb:*,ex:*/,://,b:#,:%,:XCOMM,n:>,fb:-
 setlocal commentstring=/*%s*/
 setlocal complete=.,w,b,u,t,i
-setlocal concealcursor=
-setlocal conceallevel=0
 setlocal completefunc=
 setlocal nocopyindent
 setlocal cryptmethod=
@@ -1122,7 +1165,6 @@ setlocal noexpandtab
 if &filetype != 'cpp'
 setlocal filetype=cpp
 endif
-setlocal fillchars=
 setlocal fixendofline
 set foldcolumn=1
 setlocal foldcolumn=1
@@ -1153,10 +1195,8 @@ setlocal iskeyword=@,48-57,_,192-255
 setlocal keywordprg=
 setlocal nolinebreak
 setlocal nolisp
-setlocal lispoptions=
 setlocal lispwords=
 setlocal nolist
-setlocal listchars=
 setlocal makeencoding=
 setlocal makeprg=
 setlocal matchpairs=(:),{:},[:]
@@ -1182,13 +1222,11 @@ setlocal showbreak=
 setlocal sidescrolloff=-1
 setlocal signcolumn=auto
 setlocal smartindent
-setlocal nosmoothscroll
 setlocal softtabstop=0
 setlocal nospell
 setlocal spellcapcheck=[.?!]\\_[\\])'\"\	\ ]\\+
 setlocal spellfile=
 setlocal spelllang=en
-setlocal spelloptions=
 setlocal statusline=
 setlocal suffixesadd=
 setlocal swapfile
@@ -1205,10 +1243,8 @@ setlocal termwinscroll=10000
 setlocal termwinsize=
 setlocal textwidth=0
 setlocal thesaurus=
-setlocal thesaurusfunc=
 setlocal noundofile
 setlocal undolevels=-123456
-setlocal virtualedit=
 setlocal wincolor=
 setlocal nowinfixheight
 setlocal nowinfixwidth
@@ -1216,32 +1252,41 @@ setlocal wrap
 setlocal wrapmargin=0
 29
 normal! zo
-let s:l = 35 - ((34 * winheight(0) + 26) / 52)
+let s:l = 35 - ((34 * winheight(0) + 37) / 74)
 if s:l < 1 | let s:l = 1 | endif
-keepjumps exe s:l
+exe s:l
 normal! zt
-keepjumps 35
+35
 normal! 0
 lcd ~/cursus_nineteen/6_push_swap
 wincmd w
-exe 'vert 1resize ' . ((&columns * 23 + 119) / 238)
-exe 'vert 2resize ' . ((&columns * 106 + 119) / 238)
-exe 'vert 3resize ' . ((&columns * 107 + 119) / 238)
+exe 'vert 1resize ' . ((&columns * 31 + 158) / 316)
+exe 'vert 2resize ' . ((&columns * 141 + 158) / 316)
+exe 'vert 3resize ' . ((&columns * 142 + 158) / 316)
 tabnext 1
 set stal=1
+badd +58 ~/cursus_nineteen/6_push_swap/src/main.c
+badd +1 ~/cursus_nineteen/6_push_swap/misc/pseudocode
+badd +1 ~/cursus_nineteen/6_push_swap/src/operations/push.c
+badd +1 ~/cursus_nineteen/6_push_swap/includes/push_swap.h
+badd +1 ~/cursus_nineteen/6_push_swap/includes/prototypes_push_swap.h
+badd +16 ~/cursus_nineteen/6_push_swap/src/sorting/sort_three.c
+badd +23 ~/cursus_nineteen/6_push_swap/src/list_utils/list_init.c
+badd +141 ~/cursus_nineteen/6_push_swap/misc/push_swap_main.c
+badd +15 ~/cursus_nineteen/6_push_swap/src/turk_algo/rotate_stacks.c
+badd +0 ~/cursus_nineteen/6_push_swap/src/turk_algo/push_cheapest.c
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0
   silent exe 'bwipe ' . s:wipebuf
 endif
 unlet! s:wipebuf
-set winheight=1 winwidth=20
-set shortmess=filnxtToOS
-let &winminheight = s:save_winminheight
-let &winminwidth = s:save_winminwidth
+set winheight=1 winwidth=20 shortmess=filnxtToOS
+set winminheight=0 winminwidth=0
 let s:sx = expand("<sfile>:p:r")."x.vim"
-if filereadable(s:sx)
+if file_readable(s:sx)
   exe "source " . fnameescape(s:sx)
 endif
-let &g:so = s:so_save | let &g:siso = s:siso_save
+let &so = s:so_save | let &siso = s:siso_save
+nohlsearch
 doautoall SessionLoadPost
 unlet SessionLoad
 " vim: set ft=vim :
