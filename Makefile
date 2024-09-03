@@ -7,7 +7,7 @@ GFLAGS		=	-g
 
 DFLAGS		=	-fsanitize=address -fsanitize=undefined
 
-aLFLAGS		=	-fuse-ld=lld
+#LFLAGS		=	-fuse-ld=lld
 #---------------------------------------------------------#
 SRC_DIR		=	src
 
