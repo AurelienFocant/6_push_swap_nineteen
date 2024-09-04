@@ -85,6 +85,7 @@ int	main(int argc, char **argv)
 		fn_execute_cmd(line, &stack_a, &stack_b);
 		ft_printf("\n");
 		ft_print_stack(stack_a, "A");
+		free(line);
 		line = ft_get_next_line(STDIN_FILENO);
 	}
 	if (ft_is_sorted(stack_a))
