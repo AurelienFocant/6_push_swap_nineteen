@@ -6,7 +6,7 @@
 /*   By: afocant <afocant@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 16:50:39 by afocant           #+#    #+#             */
-/*   Updated: 2024/09/04 23:32:37 by afocant          ###   ########.fr       */
+/*   Updated: 2024/09/05 00:10:47 by afocant          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,8 @@ void	ft_free_strv(char **av)
 		*av = NULL;
 		av++;
 	}
+	free(*av);
+	*av = NULL;
 }
 
 char	**ft_check_arg_errors(int argc, char **argv)
