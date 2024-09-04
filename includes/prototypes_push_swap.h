@@ -65,6 +65,8 @@ int	fn_is_sorted(t_node *stack);
 void	ft_rotate_stack(t_node **stack, t_node *node, int name);
 void	ft_rotate_both_stacks(t_node *node, t_node **stack_a, t_node **stack_b);
 t_node	*ft_find_cheapest(t_node **stack);
+int	ft_double_rotate_possible(t_node *cheapest, t_node *stack_from, t_node *stack_to);
+void	ft_push_cheapest( t_node **stack_from, t_node **stack_to, int name_from, int name_to);
 
 /*----------------  set_costs.c  ---------------*/
 unsigned int	fn_count_moves_to_top(t_node *node, t_node *stack);
@@ -73,8 +75,8 @@ void	ft_set_costs(t_node **stack_a, t_node **stack_b);
 
 /*----------------  set_targets.c  ---------------*/
 void	ft_find_target_bigger(t_node *node, t_node **stack);
-void	ft_find_target_smaller(t_node *node, t_node **stack);
 void	ft_set_targets_bigger(t_node **stack_from, t_node **stack_to);
+void	ft_find_target_smaller(t_node *node, t_node **stack);
 void	ft_set_targets_smaller(t_node **stack_from, t_node **stack_to);
 
 /*----------------  turk_algo.c  ---------------*/
