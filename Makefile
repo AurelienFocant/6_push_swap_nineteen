@@ -3,9 +3,9 @@ CC		=	cc
 
 CFLAGS	=	-Wall -Wextra -Werror
 
-GFLAGS	=	-g
+aGFLAGS	=	-g -fuse-ld=lld
 
-DFLAGS	=	-fsanitize=address -fsanitize=undefined
+aDFLAGS	=	-fsanitize=address -fsanitize=undefined
 #---------------------------------------------------------#
 SRC_DIR		=	src
 
@@ -66,7 +66,7 @@ all:		$(NAME)
 lib:		$(LIBFT_DIR)/$(LIBFT)
 
 $(NAME):	$(OBJ) $(LIBFT_DIR)/$(LIBFT)
-	$(CC) $(CFLAGS) $(DFLAGS) $(GFLAGS) $(LIB_FLAGS) $(OBJ) -o $@
+	$(CC) $(CFLAGS) $(DFLAGS) $(GFLAGS) $(OBJ) $(LIB_FLAGS) -o $@
 
 $(LIBFT_DIR)/$(LIBFT):
 	@$(MAKE) -C $(LIBFT_DIR)
@@ -93,7 +93,7 @@ $(BONUS_PUSH_SWAP_LIB): $(BONUS_OBJ_LIB) $(OBJ)
 	ar rcs $(BONUS_PUSH_SWAP_LIB) $(BONUS_OBJ_LIB)
 
 $(CHECKER):	$(BONUS_OBJ) $(LIBFT_DIR)/$(LIBFT) $(BONUS_PUSH_SWAP_LIB)
-	$(CC) $(CFLAGS) $(DFLAGS) $(GFLAGS) $(LIB_FLAGS) $(BONUS_OBJ_LIB) $(BONUS_OBJ) -o $@
+	$(CC) $(CFLAGS) $(DFLAGS) $(GFLAGS) $(BONUS_OBJ_LIB) $(BONUS_OBJ) $(LIB_FLAGS) -o $@
 
 $(BONUS_OBJ_DIR)/%.o: $(BONUS_SRC_DIR)/%.c | $(BONUS_OBJ_SUBDIRS) $(BONUS_OBJ_DIR)
 	@echo $(BONUS_OBJ_SUBDIRS)
