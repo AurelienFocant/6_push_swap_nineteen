@@ -6,7 +6,7 @@
 /*   By: afocant <afocant@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 15:12:53 by afocant           #+#    #+#             */
-/*   Updated: 2024/09/04 13:50:37 by afocant          ###   ########.fr       */
+/*   Updated: 2024/09/04 13:54:55 by afocant          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,10 @@ int	main(int argc, char **argv)
 	stack_a = NULL;
 	stack_b = NULL;
 	ft_init_stack(argv, &stack_a);
-	// ft_check_if sorted or <= 3
+	if (fn_stacklen(stack_a) == 2)
+		fn_sort_two(&stack_a);
+	if (fn_stacklen(stack_a) == 3)
+		fn_sort_three(&stack_a);
 	ft_turk_algo(&stack_a, &stack_b);
 	return (EXIT_SUCCESS);
 }
