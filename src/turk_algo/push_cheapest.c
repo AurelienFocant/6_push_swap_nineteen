@@ -6,7 +6,7 @@
 /*   By: afocant <afocant@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 15:51:24 by afocant           #+#    #+#             */
-/*   Updated: 2024/09/04 17:08:33 by afocant          ###   ########.fr       */
+/*   Updated: 2024/09/04 21:13:01 by afocant          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,19 +61,6 @@ t_node	*ft_find_cheapest(t_node **stack)
 		ptr = ptr->next;
 	}
 	return (NULL);
-}
-
-int	ft_double_rotate_possible(t_node *cheapest, t_node *stack_from, t_node *stack_to)
-{
-	int	from;
-	int	to;
-
-	from = ft_is_above_median(cheapest, stack_from);
-	to = ft_is_above_median(cheapest->target, stack_to);
-	if (from == to)
-		return (TRUE);
-	else
-		return (FALSE);
 }
 
 void	ft_push_cheapest( t_node **stack_from, t_node **stack_to, int name_from, int name_to)

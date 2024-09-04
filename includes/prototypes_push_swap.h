@@ -65,10 +65,11 @@ int	fn_is_sorted(t_node *stack);
 void	ft_rotate_stack(t_node **stack, t_node *node, int name);
 void	ft_rotate_both_stacks(t_node *node, t_node **stack_a, t_node **stack_b);
 t_node	*ft_find_cheapest(t_node **stack);
-int	ft_double_rotate_possible(t_node *cheapest, t_node *stack_from, t_node *stack_to);
 void	ft_push_cheapest( t_node **stack_from, t_node **stack_to, int name_from, int name_to);
 
 /*----------------  set_costs.c  ---------------*/
+unsigned int	ft_return_bigger_cost(unsigned int cost1, unsigned int cost2);
+int	ft_double_rotate_possible(t_node *cheapest, t_node *stack_from, t_node *stack_to);
 unsigned int	fn_count_moves_to_top(t_node *node, t_node *stack);
 int	fn_find_cost(t_node *node, t_node **stack_a, t_node **stack_b);
 void	ft_set_costs(t_node **stack_a, t_node **stack_b);
