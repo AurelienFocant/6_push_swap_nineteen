@@ -6,7 +6,7 @@
 /*   By: afocant <afocant@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 16:50:45 by afocant           #+#    #+#             */
-/*   Updated: 2024/08/30 15:32:48 by afocant          ###   ########.fr       */
+/*   Updated: 2024/09/04 22:54:56 by afocant          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	ft_init_stack(char **argv, t_node **stack_a)
 {
 	size_t	i;
 
-	i = 1;
+	i = 0;
 	while (argv[i])
 	{
 		ft_create_node(ft_atoi(argv[i]), stack_a);

@@ -2,7 +2,7 @@
 CC			=	cc
 CFLAGS		=	-Wall -Wextra -Werror
 GFLAGS		=	-g
-DFLAGS		=	-fsanitize=address -fsanitize=undefined
+aDFLAGS		=	-fsanitize=address -fsanitize=undefined
 LINK		=	$(shell ld -v 2>&1 | grep GNU && whereis lld)
 ifneq ($(LINK),)
 	LFLAGS	=	-fuse-ld=lld

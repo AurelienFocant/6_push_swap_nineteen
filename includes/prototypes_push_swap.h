@@ -8,7 +8,8 @@ void	fn_error_exit(char *msg, int exitcode);
 int	ft_is_str_nbr(char *str);
 void	ft_check_non_integers(char **argv);
 void	ft_check_duplicates(char **argv, size_t size);
-void	ft_check_arg_errors(int argc, char **argv);
+void	ft_free_strv(char **av);
+char	**ft_check_arg_errors(int argc, char **argv);
 
 /*----------------  list_init.c  ---------------*/
 void	ft_init_stack(char **argv, t_node **stack_a);
