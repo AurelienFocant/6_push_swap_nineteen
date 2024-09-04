@@ -48,7 +48,7 @@ void	fn_execute_cmd(char *line, t_node **stack_a, t_node **stack_b)
 		fn_error_exit("Error\n");
 }
 
-int	fn_is_sorted(t_node *stack_a)
+int	ft_is_sorted(t_node *stack_a)
 {
 	int		min;
 	t_node *ptr;
@@ -87,7 +87,7 @@ int	main(int argc, char **argv)
 		ft_print_stack(stack_a, "A");
 		line = ft_get_next_line(STDIN_FILENO);
 	}
-	if (fn_is_sorted(stack_a))
+	if (ft_is_sorted(stack_a))
 		printf("OK\n");
 	else
 		printf("KO\n");
