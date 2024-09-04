@@ -73,16 +73,24 @@ void	ft_check_duplicates(char **argv, size_t size)
 	}
 }
 
+void	ft_free_null(void *ptr)
+{
+	free(ptr);
+	ptr = NULL;
+}
+
 void	ft_free_strv(char **av)
 {
-	while (*av)
+	char	**ptr;
+
+	ptr = av;
+	while (*ptr)
 	{
-		free(*av);
-		*av = NULL;
-		av++;
+		ft_free_null(*ptr);
+		ptr++;
 	}
-	free(*av);
-	*av = NULL;
+	ft_free_null(*ptr);
+	free(av);
 }
 
 char	**ft_check_arg_errors(int argc, char **argv)
