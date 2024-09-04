@@ -1,13 +1,12 @@
 #---------------------------------------------------------#
-CC			=	cc
-
-CFLAGS		=	-Wall -Wextra -Werror
-
-GFLAGS		=	-g
-
-DFLAGS		=	-fsanitize=address -fsanitize=undefined
-
-#LFLAGS		=	-fuse-ld=lld
+CC			=	cc 
+CFLAGS		=	-Wall -Wextra -Werror 
+GFLAGS		=	-g 
+DFLAGS		=	-fsanitize=address -fsanitize=undefined 
+LINK		=	$(shell ld -v 2>&1 | grep GNU && whereis lld)
+ifneq ($(LINK),)
+	LFLAGS	=	-fuse-ld=lld
+endif
 #---------------------------------------------------------#
 SRC_DIR		=	src
 
@@ -47,7 +46,7 @@ all:		$(NAME)
 lib:		$(LIBFT_DIR)/$(LIBFT)
 
 $(NAME):	$(OBJ) $(LIBFT_DIR)/$(LIBFT)
-	$(CC) $(CFLAGS) $(DFLAGS) $(GFLAGS) $(LFLAGS) $(OBJ) $(LIB_FLAGS) -o $@
+	$(CC) $(CFLAGS) $(DFLAGS) $(GFLAGS) $(OBJ) $(LFLAGS) $(LIB_FLAGS) -o $@
 
 $(LIBFT_DIR)/$(LIBFT):
 	@echo "LIBFT being created"
@@ -55,7 +54,7 @@ $(LIBFT_DIR)/$(LIBFT):
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_SUBDIRS) $(OBJ_DIR)
 	@echo $(OBJ_SUBDIRS)
-	$(CC) $(CFLAGS) $(DFLAGS) $(GFLAGS) $(INC_FLAGS) -c $< -o $@ 
+	$(CC) $(CFLAGS) $(DFLAGS) $(GFLAGS) $(INC_FLAGS) -c $< -o $@
 
 $(OBJ_DIR):
 	@mkdir -p $@
@@ -67,7 +66,7 @@ clean:
 	rm -rf $(OBJ_DIR)
 
 fclean:		clean
-	rm -rf $(NAME) 
+	rm -rf $(NAME)
 	rm -rf $(CHECKER)
 
 libclean:
@@ -98,18 +97,18 @@ ffclean: fclean libclean
 #
 #BONUS_INC_FLAGS	=	-I$(INC_DIR) -I$(BONUS_INC_DIR) -I$(LIBFT_DIR)/$(INC_DIR)
 #---------------------------------------------------------#
-bonus:		$(CHECKER)
-
-$(CHECKER):	$(BONUS_OBJ) $(LIBFT_DIR)/$(LIBFT)
-	$(CC) $(CFLAGS) $(DFLAGS) $(GFLAGS) $(LIB_FLAGS) $(BONUS_OBJ) -o $@
-
-$(BONUS_OBJ_DIR)/%.o: $(BONUS_SRC_DIR)/%.c | $(BONUS_OBJ_SUBDIRS) $(BONUS_OBJ_DIR)
-	@echo $(BONUS_OBJ_SUBDIRS)
-	$(CC) $(CFLAGS) $(DFLAGS) $(GFLAGS) $(BONUS_INC_FLAGS) -c $< -o $@ 
-
-$(BONUS_OBJ_DIR):
-	@mkdir -p $@
-
-$(BONUS_OBJ_SUBDIRS):
-	@mkdir -p $@
+#bonus:		$(CHECKER)
+#
+#$(CHECKER):	$(BONUS_OBJ) $(LIBFT_DIR)/$(LIBFT)
+#	$(CC) $(CFLAGS) $(DFLAGS) $(GFLAGS) $(BONUS_OBJ) $(LIB_FLAGS) -o $@
+#
+#$(BONUS_OBJ_DIR)/%.o: $(BONUS_SRC_DIR)/%.c | $(BONUS_OBJ_SUBDIRS) $(BONUS_OBJ_DIR)
+#	@echo $(BONUS_OBJ_SUBDIRS)
+#	$(CC) $(CFLAGS) $(DFLAGS) $(GFLAGS) $(BONUS_INC_FLAGS) -c $< -o $@
+#
+#$(BONUS_OBJ_DIR):
+#	@mkdir -p $@
+#
+#$(BONUS_OBJ_SUBDIRS):
+#	@mkdir -p $@
 #---------------------------------------------------------#
