@@ -6,7 +6,7 @@
 /*   By: afocant <afocant@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 15:51:24 by afocant           #+#    #+#             */
-/*   Updated: 2024/09/03 20:40:48 by afocant          ###   ########.fr       */
+/*   Updated: 2024/09/04 17:08:33 by afocant          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,34 +63,32 @@ t_node	*ft_find_cheapest(t_node **stack)
 	return (NULL);
 }
 
-int	ft_double_rotate_possible(t_node *cheapest,
-		t_node *stack_from, t_node *stack_to)
+int	ft_double_rotate_possible(t_node *cheapest, t_node *stack_from, t_node *stack_to)
 {
 	int	from;
 	int	to;
 
-	from = ft_is_above_median(*cheapest, *stack_from);
-	to = ft_is_above_median((*cheapest)->target, *stack_to);
+	from = ft_is_above_median(cheapest, stack_from);
+	to = ft_is_above_median(cheapest->target, stack_to);
 	if (from == to)
 		return (TRUE);
 	else
 		return (FALSE);
 }
 
-void	ft_push_cheapest(t_node **stack_from, t_node **stack_to,
-		int name_from, int name_to)
+void	ft_push_cheapest( t_node **stack_from, t_node **stack_to, int name_from, int name_to)
 {
 	t_node	*cheapest;
 
 	cheapest = ft_find_cheapest(stack_from);
-	while (*stack_from != *cheapest
-		&& *stack_to != (*cheapest)->target
+	while (*stack_from != cheapest
+		&& *stack_to != cheapest->target
 		&& ft_double_rotate_possible(cheapest, *stack_from, *stack_to))
-		ft_rotate_both_stacks(*cheapest, stack_from, stack_to);
-	while (*stack_from != *cheapest)
-		ft_rotate_stack(stack_from, *cheapest, name_from);
-	while (*stack_to != (*cheapest)->target)
-		ft_rotate_stack(stack_to, (*cheapest)->target, name_to);
+		ft_rotate_both_stacks(cheapest, stack_from, stack_to);
+	while (*stack_from != cheapest)
+		ft_rotate_stack(stack_from, cheapest, name_from);
+	while (*stack_to != cheapest->target)
+		ft_rotate_stack(stack_to, cheapest->target, name_to);
 	if (name_from == A)
 		pb(stack_from, stack_to);
 	else if (name_from == B)

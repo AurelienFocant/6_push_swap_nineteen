@@ -6,7 +6,7 @@
 /*   By: afocant <afocant@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 19:47:58 by afocant           #+#    #+#             */
-/*   Updated: 2024/09/03 20:44:37 by afocant          ###   ########.fr       */
+/*   Updated: 2024/09/04 14:05:45 by afocant          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	ft_last_rotate(t_node **stack_a)
 {
 	t_node	*min;
 
-	min = fn_find_smaller(*stack_a);
+	min = fn_find_min(*stack_a);
 	while (*stack_a != min)
 	{
 		if (ft_is_above_median(min, *stack_a))

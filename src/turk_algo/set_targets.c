@@ -6,7 +6,7 @@
 /*   By: afocant <afocant@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 15:37:36 by afocant           #+#    #+#             */
-/*   Updated: 2024/09/03 20:43:33 by afocant          ###   ########.fr       */
+/*   Updated: 2024/09/04 14:05:05 by afocant          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,19 @@ void	ft_find_target_bigger(t_node *node, t_node **stack)
 		ptr = ptr->next;
 	}
 	if (target == LONG_MAX)
-		node->target = fn_find_smaller(*stack);
+		node->target = fn_find_min(*stack);
+}
+
+void	ft_set_targets_bigger(t_node **stack_from, t_node **stack_to)
+{
+	t_node	*ptr;
+
+	ptr = *stack_from;
+	while (ptr)
+	{
+		ft_find_target_bigger(ptr, stack_to);
+		ptr = ptr->next;
+	}
 }
 
 void	ft_find_target_smaller(t_node *node, t_node **stack)
@@ -50,18 +62,6 @@ void	ft_find_target_smaller(t_node *node, t_node **stack)
 	}
 	if (target == LONG_MIN)
 		node->target = fn_find_max(*stack);
-}
-
-void	ft_set_targets_bigger(t_node **stack_from, t_node **stack_to)
-{
-	t_node	*ptr;
-
-	ptr = *stack_from;
-	while (ptr)
-	{
-		ft_find_target_bigger(ptr, stack_to);
-		ptr = ptr->next;
-	}
 }
 
 void	ft_set_targets_smaller(t_node **stack_from, t_node **stack_to)
