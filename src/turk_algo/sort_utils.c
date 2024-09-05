@@ -6,7 +6,7 @@
 /*   By: afocant <afocant@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 19:19:13 by afocant           #+#    #+#             */
-/*   Updated: 2024/09/03 20:24:00 by afocant          ###   ########.fr       */
+/*   Updated: 2024/09/05 21:07:13 by afocant          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,5 +70,20 @@ int	ft_sort_two(t_node **stack)
 {
 	if ((*stack)->data > (*stack)->next->data)
 		sa(stack);
+	return (TRUE);
+}
+
+int	ft_is_sorted(t_node *stack)
+{
+	int		min;
+
+	min = INT_MIN;
+	while (stack)
+	{
+		if (stack->data < min)
+			return (FALSE);
+		min = stack->data;
+		stack = stack->next;
+	}
 	return (TRUE);
 }

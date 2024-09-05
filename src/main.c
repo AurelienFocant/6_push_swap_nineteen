@@ -6,11 +6,22 @@
 /*   By: afocant <afocant@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 15:12:53 by afocant           #+#    #+#             */
-/*   Updated: 2024/09/04 22:42:11 by afocant          ###   ########.fr       */
+/*   Updated: 2024/09/05 21:10:19 by afocant          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+char	**ft_check_arg_errors(int argc, char **argv)
+{
+	char	**av;
+
+	if (argc == 2)
+		av = ft_parse_str(argv[1], (size_t) argc - 1);
+	else
+		av = ft_parse_args(argv + 1, (size_t) argc - 1);
+	return (av);
+}
 
 int	main(int argc, char **argv)
 {
