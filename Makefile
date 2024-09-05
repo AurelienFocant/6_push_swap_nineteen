@@ -74,6 +74,7 @@ clean:
 	rm -rf $(BONUS_OBJ_DIR)
 
 fclean:		clean
+	rm -rf $(PUSH_LIB)
 	rm -rf $(NAME)
 	rm -rf $(CHECKER)
 
