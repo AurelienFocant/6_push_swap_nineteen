@@ -64,6 +64,7 @@ $(OBJ_SUBDIRS):
 #---------------------------------------------------------#
 clean:
 	rm -rf $(OBJ_DIR)
+	rm -rf $(BONUS_OBJ_DIR)
 
 fclean:		clean
 	rm -rf $(NAME)
