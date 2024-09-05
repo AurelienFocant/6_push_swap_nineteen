@@ -11,8 +11,6 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include "prototypes_push_swap.h"
-#include "checker.h"
 
 void	fn_error_exit(char *msg)
 {
@@ -77,14 +75,11 @@ int	main(int argc, char **argv)
 	stack_a = NULL;
 	stack_b = NULL;
 	ft_init_stack(argv, &stack_a);
-	ft_print_stack(stack_a, "A\n");
-
 	line = ft_get_next_line(STDIN_FILENO);
 	while (line)
 	{
 		fn_execute_cmd(line, &stack_a, &stack_b);
 		ft_printf("\n");
-		ft_print_stack(stack_a, "A");
 		free(line);
 		line = ft_get_next_line(STDIN_FILENO);
 	}
