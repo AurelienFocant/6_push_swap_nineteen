@@ -6,7 +6,7 @@
 /*   By: afocant <afocant@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 19:47:58 by afocant           #+#    #+#             */
-/*   Updated: 2024/09/04 14:05:45 by afocant          ###   ########.fr       */
+/*   Updated: 2024/09/05 23:29:48 by afocant          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,9 @@ void	ft_last_rotate(t_node **stack_a)
 	while (*stack_a != min)
 	{
 		if (ft_is_above_median(min, *stack_a))
-			ra(stack_a);
+			ra(stack_a, PRINT);
 		else
-			rra(stack_a);
+			rra(stack_a, PRINT);
 	}
 }
 
@@ -65,7 +65,7 @@ void	ft_turk_algo(t_node **stack_a, t_node **stack_b)
 	len = ft_stacklen(*stack_a);
 	while (len > 3 && n--)
 	{
-		pb(stack_a, stack_b);
+		pb(stack_a, stack_b, PRINT);
 		len--;
 	}
 	while (len-- > 3)

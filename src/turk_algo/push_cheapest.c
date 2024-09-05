@@ -6,7 +6,7 @@
 /*   By: afocant <afocant@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 15:51:24 by afocant           #+#    #+#             */
-/*   Updated: 2024/09/04 21:13:01 by afocant          ###   ########.fr       */
+/*   Updated: 2024/09/05 23:31:51 by afocant          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,25 +17,25 @@ void	ft_rotate_stack(t_node **stack, t_node *node, int name)
 	if (ft_is_above_median(node, *stack))
 	{
 		if (name == A)
-			ra(stack);
+			ra(stack, PRINT);
 		else
-			rb(stack);
+			rb(stack, PRINT);
 	}
 	else
 	{
 		if (name == A)
-			rra(stack);
+			rra(stack, PRINT);
 		else
-			rrb(stack);
+			rrb(stack, PRINT);
 	}
 }
 
 void	ft_rotate_both_stacks(t_node *node, t_node **stack_a, t_node **stack_b)
 {
 	if (ft_is_above_median(node, *stack_a))
-		rr(stack_a, stack_b);
+		rr(stack_a, stack_b, PRINT);
 	else
-		rrr(stack_a, stack_b);
+		rrr(stack_a, stack_b, PRINT);
 }
 
 t_node	*ft_find_cheapest(t_node **stack)
@@ -77,7 +77,7 @@ void	ft_push_cheapest( t_node **stack_from, t_node **stack_to, int name_from, in
 	while (*stack_to != cheapest->target)
 		ft_rotate_stack(stack_to, cheapest->target, name_to);
 	if (name_from == A)
-		pb(stack_from, stack_to);
+		pb(stack_from, stack_to, PRINT);
 	else if (name_from == B)
-		pa(stack_from, stack_to);
+		pa(stack_from, stack_to, PRINT);
 }

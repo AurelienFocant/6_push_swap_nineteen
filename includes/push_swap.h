@@ -6,7 +6,7 @@
 /*   By: afocant <afocant@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 16:50:15 by afocant           #+#    #+#             */
-/*   Updated: 2024/08/30 15:32:01 by afocant          ###   ########.fr       */
+/*   Updated: 2024/09/05 23:21:30 by afocant          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,9 @@
 
 # define A 0
 # define B 1
+
+# define CHECKER 0
+# define PRINT 1
 
 typedef struct s_node
 {

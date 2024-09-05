@@ -6,7 +6,7 @@
 /*   By: afocant <afocant@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 17:03:17 by afocant           #+#    #+#             */
-/*   Updated: 2024/08/21 17:03:19 by afocant          ###   ########.fr       */
+/*   Updated: 2024/09/05 23:31:18 by afocant          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,21 +26,24 @@ void	ft_rotate(t_node **stack)
 	ptr->next = NULL;
 }
 
-void	ra(t_node **stack)
+void	ra(t_node **stack, int exec)
 {
 	ft_rotate(stack);
-	ft_printf("ra\n");
+	if (exec != CHECKER)
+		ft_printf("ra\n");
 }
 
-void	rb(t_node **stack)
+void	rb(t_node **stack, int exec)
 {
 	ft_rotate(stack);
-	ft_printf("rb\n");
+	if (exec != CHECKER)
+		ft_printf("rb\n");
 }
 
-void	rr(t_node **stack_a, t_node **stack_b)
+void	rr(t_node **stack_a, t_node **stack_b, int exec)
 {
 	ft_rotate(stack_a);
 	ft_rotate(stack_b);
-	ft_printf("rr\n");
+	if (exec != CHECKER)
+		ft_printf("rr\n");
 }

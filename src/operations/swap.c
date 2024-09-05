@@ -6,7 +6,7 @@
 /*   By: afocant <afocant@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 17:03:23 by afocant           #+#    #+#             */
-/*   Updated: 2024/08/22 15:07:02 by afocant          ###   ########.fr       */
+/*   Updated: 2024/09/05 23:27:12 by afocant          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,21 +24,24 @@ void	ft_swap(t_node **stack)
 	*stack = ptr;
 }
 
-void	sa(t_node **stack_a)
+void	sa(t_node **stack_a, int exec)
 {
 	ft_swap(stack_a);
-	ft_printf("sa\n");
+	if (exec != CHECKER)
+		ft_printf("sa\n");
 }
 
-void	sb(t_node **stack_b)
+void	sb(t_node **stack_b, int exec)
 {
 	ft_swap(stack_b);
-	ft_printf("sb\n");
+	if (exec != CHECKER)
+		ft_printf("sb\n");
 }
 
-void	ss(t_node **stack_a, t_node **stack_b)
+void	ss(t_node **stack_a, t_node **stack_b, int exec)
 {
 	ft_swap(stack_a);
 	ft_swap(stack_b);
-	ft_printf("ss\n");
+	if (exec != CHECKER)
+		ft_printf("ss\n");
 }
