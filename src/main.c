@@ -24,10 +24,10 @@ int	main(int argc, char **argv)
 	ft_init_stack(av, &stack_a);
 	if (argc == 2)
 		ft_free_strv(av);
-	if (fn_stacklen(stack_a) == 2)
-		fn_sort_two(&stack_a);
-	else if (fn_stacklen(stack_a) == 3)
-		fn_sort_three(&stack_a);
+	if (ft_stacklen(stack_a) == 2)
+		ft_sort_two(&stack_a);
+	else if (ft_stacklen(stack_a) == 3)
+		ft_sort_three(&stack_a);
 	else
 		ft_turk_algo(&stack_a, &stack_b);
 	ft_free_linkedlist(stack_a);

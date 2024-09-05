@@ -12,13 +12,13 @@
 
 #include "push_swap.h"
 
-void	fn_error_exit(char *msg)
+void	ft_error_exit(char *msg)
 {
 	ft_putstr_fd(msg, STDERR_FILENO);
 	exit(EXIT_FAILURE);
 }
 
-void	fn_execute_cmd(char *line, t_node **stack_a, t_node **stack_b)
+void	ft_execute_cmd(char *line, t_node **stack_a, t_node **stack_b)
 {
 	if (ft_strcmp(line, "sa\n") == 0)
 		sa(stack_a);
@@ -43,7 +43,7 @@ void	fn_execute_cmd(char *line, t_node **stack_a, t_node **stack_b)
 	else if (ft_strcmp(line, "rrr\n") == 0)
 		rrr(stack_a, stack_b);
 	else
-		fn_error_exit("Error\n");
+		ft_error_exit("Error\n");
 }
 
 int	ft_is_sorted(t_node *stack_a)
@@ -78,7 +78,7 @@ int	main(int argc, char **argv)
 	line = ft_get_next_line(STDIN_FILENO);
 	while (line)
 	{
-		fn_execute_cmd(line, &stack_a, &stack_b);
+		ft_execute_cmd(line, &stack_a, &stack_b);
 		ft_printf("\n");
 		free(line);
 		line = ft_get_next_line(STDIN_FILENO);

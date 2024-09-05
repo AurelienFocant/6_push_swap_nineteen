@@ -34,7 +34,7 @@ t_node	*ft_get_penult_node(t_node **stack, t_node **last_node)
 	return (ptr);
 }
 
-unsigned int	fn_stacklen(t_node *stack)
+unsigned int	ft_stacklen(t_node *stack)
 {
 	unsigned int	len;
 	t_node			*ptr;

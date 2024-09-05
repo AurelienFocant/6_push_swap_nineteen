@@ -29,7 +29,7 @@ void	ft_find_target_bigger(t_node *node, t_node **stack)
 		ptr = ptr->next;
 	}
 	if (target == LONG_MAX)
-		node->target = fn_find_min(*stack);
+		node->target = ft_find_min(*stack);
 }
 
 void	ft_set_targets_bigger(t_node **stack_from, t_node **stack_to)
@@ -61,7 +61,7 @@ void	ft_find_target_smaller(t_node *node, t_node **stack)
 		ptr = ptr->next;
 	}
 	if (target == LONG_MIN)
-		node->target = fn_find_max(*stack);
+		node->target = ft_find_max(*stack);
 }
 
 void	ft_set_targets_smaller(t_node **stack_from, t_node **stack_to)

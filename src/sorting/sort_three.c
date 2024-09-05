@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-t_node	*fn_find_max(t_node *stack)
+t_node	*ft_find_max(t_node *stack)
 {
 	t_node	*res;
 	int		max;
@@ -31,7 +31,7 @@ t_node	*fn_find_max(t_node *stack)
 	return (res);
 }
 
-t_node	*fn_find_min(t_node *stack)
+t_node	*ft_find_min(t_node *stack)
 {
 	t_node	*res;
 	int		min;
@@ -50,23 +50,23 @@ t_node	*fn_find_min(t_node *stack)
 	return (res);
 }
 
-int	fn_sort_three(t_node **stack)
+int	ft_sort_three(t_node **stack)
 {
 	t_node	*max;
 
-	if (fn_is_sorted(*stack))
+	if (ft_is_sorted(*stack))
 		return (TRUE);
-	max = fn_find_max(*stack);
+	max = ft_find_max(*stack);
 	if (*stack == max)
 		ra(stack);
 	else if ((*stack)->next == max)
 		rra(stack);
-	if (!fn_is_sorted(*stack))
+	if (!ft_is_sorted(*stack))
 		sa(stack);
 	return (TRUE);
 }
 
-int	fn_sort_two(t_node **stack)
+int	ft_sort_two(t_node **stack)
 {
 	if ((*stack)->data > (*stack)->next->data)
 		sa(stack);

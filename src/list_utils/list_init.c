@@ -33,7 +33,7 @@ void	ft_create_node(int data, t_node **stack_a)
 	if (!new_node)
 	{
 		ft_free_lists(*stack_a, NULL);
-		fn_error_exit("Error creating a node", 3);
+		ft_error_exit("Error creating a node", 3);
 	}
 	new_node->data = data;
 	new_node->next = NULL;

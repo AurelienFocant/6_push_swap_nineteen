@@ -33,28 +33,28 @@ int	ft_double_rotate_possible(t_node *cheapest, t_node *stack_from, t_node *stac
 		return (FALSE);
 }
 
-unsigned int	fn_count_moves_to_top(t_node *node, t_node *stack)
+unsigned int	ft_count_moves_to_top(t_node *node, t_node *stack)
 {
 	unsigned int	position;
 	unsigned int	len;
 	unsigned int	median;
 
-	len = fn_stacklen(stack);
+	len = ft_stacklen(stack);
 	median = len / 2;
-	position = fn_find_position(node, stack);
+	position = ft_find_position(node, stack);
 	if (position <= median)
 		return (position);
 	else
 		return (len - position);
 }
 
-int	fn_find_cost(t_node *node, t_node **stack_a, t_node **stack_b)
+int	ft_find_cost(t_node *node, t_node **stack_a, t_node **stack_b)
 {
 	unsigned int	cost1;
 	unsigned int	cost2;
 
-	cost1 = fn_count_moves_to_top(node, *stack_a);
-	cost2 = fn_count_moves_to_top(node->target, *stack_b);
+	cost1 = ft_count_moves_to_top(node, *stack_a);
+	cost2 = ft_count_moves_to_top(node->target, *stack_b);
 	if (ft_double_rotate_possible(node, *stack_a, *stack_b))
 		return (ft_return_bigger_cost(cost1, cost2));
 	else 
@@ -68,7 +68,7 @@ void	ft_set_costs(t_node **stack_a, t_node **stack_b)
 	ptr = *stack_a;
 	while (ptr)
 	{
-		ptr->cost = fn_find_cost(ptr, stack_a, stack_b);
+		ptr->cost = ft_find_cost(ptr, stack_a, stack_b);
 		ptr = ptr->next;
 	}
 }

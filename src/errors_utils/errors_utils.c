@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-void	fn_error_exit(char *msg, int exitcode)
+void	ft_error_exit(char *msg, int exitcode)
 {
 	ft_putstr_fd(msg, STDERR_FILENO);
 	//system("leaks push_swap");
@@ -95,11 +95,11 @@ void	ft_free_strv(char **av)
 	free(av);
 }
 
-void	fn_free_error_exit(char **av, char *msg, int exitcode)
+void	ft_free_error_exit(char **av, char *msg, int exitcode)
 {
 	(void) av;
 	ft_free_strv(av);
-	fn_error_exit(msg, exitcode);
+	ft_error_exit(msg, exitcode);
 }
 
 char	**ft_parse_str(char *str, size_t size)
@@ -108,18 +108,18 @@ char	**ft_parse_str(char *str, size_t size)
 
 	av = ft_split(str, ' ');
 	if (!av)
-		fn_error_exit("error parsing argument string\n", 2);
+		ft_error_exit("error parsing argument string\n", 2);
 	if (!*av)
-		fn_free_error_exit(av, "Error\n", 3);
+		ft_free_error_exit(av, "Error\n", 3);
 	if (!ft_check_non_integers(av) || !ft_check_duplicates(av, size))
-		fn_free_error_exit(av, "Error\n", 4);
+		ft_free_error_exit(av, "Error\n", 4);
 	return (av);
 }
 
 char	**ft_parse_args(char **argv, size_t size)
 {
 	if (!ft_check_non_integers(argv) || !ft_check_duplicates(argv, size))
-		fn_error_exit("Error\n", 5);
+		ft_error_exit("Error\n", 5);
 	return (argv);
 }
 

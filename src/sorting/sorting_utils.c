@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-int	fn_is_sorted(t_node *stack)
+int	ft_is_sorted(t_node *stack)
 {
 	int		min;
 
