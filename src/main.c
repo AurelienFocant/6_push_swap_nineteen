@@ -22,6 +22,8 @@ int	main(int argc, char **argv)
 	stack_a = NULL;
 	stack_b = NULL;
 	ft_init_stack(av, &stack_a);
+	if (argc == 2)
+		ft_free_strv(av);
 	if (fn_stacklen(stack_a) == 2)
 		fn_sort_two(&stack_a);
 	else if (fn_stacklen(stack_a) == 3)
@@ -29,7 +31,5 @@ int	main(int argc, char **argv)
 	else
 		ft_turk_algo(&stack_a, &stack_b);
 	ft_free_linkedlist(stack_a);
-	if (argc == 2)
-		ft_free_strv(av);
 	return (EXIT_SUCCESS);
 }
