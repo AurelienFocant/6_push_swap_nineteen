@@ -53,7 +53,7 @@ $(PUSH_LIB): $(OBJ)
 	ar -rcs $@ $^
 
 $(NAME):	$(PUSH_LIB) $(LIBFT_DIR)/$(LIBFT)
-	$(CC) $(CFLAGS) $(DFLAGS) $(LFLAGS) src/main.c $(INC_FLAGS) $(LIB_FLAGS) $(PUSH_FLAGS) -o $@
+	$(CC) $(CFLAGS) $(DFLAGS) $(GFLAGS) $(LFLAGS) src/main.c $(INC_FLAGS) $(LIB_FLAGS) $(PUSH_FLAGS) -o $@
 
 $(LIBFT_DIR)/$(LIBFT):
 	@echo "LIBFT being created"
@@ -109,7 +109,7 @@ BONUS_INC_FLAGS	=	-I$(INC_DIR) -I$(BONUS_INC_DIR) -I$(LIBFT_DIR)/$(INC_DIR)
 bonus:		$(CHECKER)
 
 $(CHECKER):	$(PUSH_LIB) $(LIBFT_DIR)/$(LIBFT)
-	$(CC) $(CFLAGS) $(DFLAGS) $(LFLAGS) src_bonus/checker_main.c $(INC_FLAGS) $(LIB_FLAGS) $(PUSH_FLAGS) -o $@
+	$(CC) $(CFLAGS) $(DFLAGS) $(LFLAGS) $(GFLAGS) src_bonus/checker_main.c $(INC_FLAGS) $(LIB_FLAGS) $(PUSH_FLAGS) -o $@
 
 $(BONUS_OBJ_DIR)/%.o: $(BONUS_SRC_DIR)/%.c | $(BONUS_OBJ_SUBDIRS) $(BONUS_OBJ_DIR)
 	@echo $(BONUS_OBJ_SUBDIRS)

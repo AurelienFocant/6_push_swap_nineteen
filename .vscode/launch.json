@@ -9,11 +9,11 @@
             "type": "cppdbg",
             "request": "launch",
             "program": "${workspaceFolder}/push_swap",
-            "args": [3 7 19 2 10 6 14 15 17 13 11 12 8 1 9 20 4 5 18 16],
-            "stopAtEntry": false,
+            "args": [9 8 7 -6],
+            "stopAtEntry": true,
             "cwd": "${fileDirname}",
             "environment": [],
-            "externalConsole": false,
+            "externalConsole": true,
             "MIMode": "lldb"
         }
     ]
