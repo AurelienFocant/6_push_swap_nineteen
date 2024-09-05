@@ -6,7 +6,7 @@
 /*   By: afocant <afocant@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 15:33:08 by afocant           #+#    #+#             */
-/*   Updated: 2024/08/22 15:19:03 by afocant          ###   ########.fr       */
+/*   Updated: 2024/09/05 23:12:22 by afocant          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_checker_error(t_node **stack_a, t_node **stack_b)
 {
-	ft_free_lists(stack_a, stack_b);
+	ft_free_lists(*stack_a, *stack_b);
 	ft_error_exit("Error\n", 18);
 }
 
