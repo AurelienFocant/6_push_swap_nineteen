@@ -68,23 +68,13 @@ int	ft_check_duplicates(char **argv, size_t size)
 	return (TRUE);
 }
 
-char	**ft_parse_str(char *str, size_t size)
+char	**ft_check_arg_errors(int argc, char **argv)
 {
-	char **av;
+	char	**av;
 
-	av = ft_split(str, ' ');
-	if (!av)
-		ft_error_exit("error parsing argument string\n", 2);
-	if (!*av)
-		ft_free_error_exit(av, "Error\n", 3);
-	if (!ft_check_non_integers(av) || !ft_check_duplicates(av, size))
-		ft_free_error_exit(av, "Error\n", 4);
+	if (argc == 2)
+		av = ft_parse_str(argv[1], (size_t) argc - 1);
+	else
+		av = ft_parse_args(argv + 1, (size_t) argc - 1);
 	return (av);
-}
-
-char	**ft_parse_args(char **argv, size_t size)
-{
-	if (!ft_check_non_integers(argv) || !ft_check_duplicates(argv, size))
-		ft_error_exit("Error\n", 5);
-	return (argv);
 }

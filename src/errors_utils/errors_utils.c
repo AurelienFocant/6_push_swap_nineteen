@@ -15,7 +15,6 @@
 void	ft_error_exit(char *msg, int exitcode)
 {
 	ft_putstr_fd(msg, STDERR_FILENO);
-	//system("leaks push_swap");
 	exit(exitcode);
 }
 

@@ -12,17 +12,6 @@
 
 #include "push_swap.h"
 
-char	**ft_check_arg_errors(int argc, char **argv)
-{
-	char	**av;
-
-	if (argc == 2)
-		av = ft_parse_str(argv[1], (size_t) argc - 1);
-	else
-		av = ft_parse_args(argv + 1, (size_t) argc - 1);
-	return (av);
-}
-
 int	main(int argc, char **argv)
 {
 	char	**av;

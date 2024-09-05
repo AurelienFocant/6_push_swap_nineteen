@@ -12,10 +12,10 @@
 
 #include "push_swap.h"
 
-void	ft_error_exit(char *msg)
+void	ft_checker_error(t_node **stack_a, t_node **stack_b)
 {
-	ft_putstr_fd(msg, STDERR_FILENO);
-	exit(EXIT_FAILURE);
+	ft_free_lists(stack_a, stack_b);
+	ft_error_exit("Error\n", 18);
 }
 
 void	ft_execute_cmd(char *line, t_node **stack_a, t_node **stack_b)
@@ -43,24 +43,7 @@ void	ft_execute_cmd(char *line, t_node **stack_a, t_node **stack_b)
 	else if (ft_strcmp(line, "rrr\n") == 0)
 		rrr(stack_a, stack_b);
 	else
-		ft_error_exit("Error\n");
-}
-
-int	ft_is_sorted(t_node *stack_a)
-{
-	int		min;
-	t_node *ptr;
-
-	min = INT_MIN;
-	ptr = stack_a;
-	while (ptr)
-	{
-		if (ptr->data < min)
-			return (FALSE);
-		min = ptr->data;
-		ptr = ptr->next;
-	}
-	return (TRUE);
+		ft_checker_error(stack_a, stack_b);
 }
 
 int	main(int argc, char **argv)
@@ -71,7 +54,6 @@ int	main(int argc, char **argv)
 	t_node	*stack_b;
 
 	ft_check_arg_errors(argc, argv);
-
 	stack_a = NULL;
 	stack_b = NULL;
 	ft_init_stack(argv, &stack_a);
@@ -84,8 +66,9 @@ int	main(int argc, char **argv)
 		line = ft_get_next_line(STDIN_FILENO);
 	}
 	if (ft_is_sorted(stack_a))
-		printf("OK\n");
+		ft_printf("OK\n");
 	else
-		printf("KO\n");
+		ft_printf("KO\n");
+	ft_free_linkedlist(stack_a);
 	return (0);
 }
