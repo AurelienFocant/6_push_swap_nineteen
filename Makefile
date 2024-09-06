@@ -1,80 +1,83 @@
-#---------------------------------------------------------#
-CC			=	cc
-CFLAGS		=	-Wall -Wextra -Werror
-GFLAGS		=	-g
-aDFLAGS		=	-fsanitize=address -fsanitize=undefined
-LINK		=	$(shell ld -v 2>&1 | grep GNU && whereis lld)
+#-----------------------COMPILER------------------------------#
+CC							=	cc
+CFLAGS						=	-Wall -Wextra -Werror
+GFLAGS						=	-g
+LINK						=	$(shell ld -v 2>&1 | grep GNU && whereis lld)
 ifneq ($(LINK),)
-	LFLAGS	=	-fuse-ld=lld
+	LFLAGS					=	-fuse-ld=lld
 endif
-#---------------------------------------------------------#
-SRC_DIR		=	src
 
-SRC_SUBDIRS	=	$(shell find $(SRC_DIR)/* -type d)
+COMPILER					=	$(CC) $(CFLAGS) $(GFLAGS)
+LINKER						=	$(CC) $(LNKFLAGS) $(CFLAGS) $(GFLAGS)
+ARCHIVER					=	ar -rcs
 
-SRC			=	$(shell find $(SRC_DIR) -type f -name "*.c" | grep -v main)
+#-----------------------HEADER FILES--------------------------#
+INC_DIR						=	includes
+INC_FLAGS					=	-I$(INC_DIR) -I$(LIBFT_DIR)/$(INC_DIR)
 
-OBJ_DIR		=	obj
+#-----------------------SOURCE FILES--------------------------#
+SRC_DIR						=	src
+OBJ_DIR						=	obj
+SRC_SUBDIRS					=	$(shell find $(SRC_DIR)/* -type d)
+OBJ_SUBDIRS					=	$(patsubst $(SRC_DIR)%, $(OBJ_DIR)%, $(SRC_SUBDIRS))
 
-OBJ_SUBDIRS	=	$(SRC_SUBDIRS:$(SRC_DIR)%=$(OBJ_DIR)%)
+P_S_SRC						=	$(SRC_DIR)/push_swap_main.c
+CH_SRC						=	$(SRC_DIR)/checker_main_bonus.c
+P_S_OBJ						=	$(patsubst $(SRC_DIR)%.c, $(OBJ_DIR)%.o, $(P_S_SRC))
+CH_OBJ						=	$(patsubst $(SRC_DIR)%.c, $(OBJ_DIR)%.o, $(CH_SRC))
 
-OBJ			=	$(SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
+#-----------------------PUSH_SWAP LIB-------------------------#
+P_S_LIB_SRC					=	$(shell find $(SRC_DIR) -type f -name "*.c" | grep -v main)
+P_S_LIB_OBJ					=	$(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(P_S_LIB_SRC))
+P_S_LIB						=	libpush.a
+P_S_FLAGS					=	-L$(OBJ_DIR) -lpush
 
-INC_DIR		=	includes
-
-INC_FLAGS	=	-I$(INC_DIR) -I$(LIBFT_DIR)/$(INC_DIR)
-#---------------------------------------------------------#
-PUSH_LIB	=	libpush.a
-
-PUSH_FLAGS	=	-L. -lpush
-#---------------------------------------------------------#
-LIBFT_DIR	=	libft
-
-CPU			=	$(shell uname -m)
+#-------------------------LIBFT-------------------------------#
+CPU							=	$(shell uname -m)
 ifeq ($(CPU),arm64)
-	LIBFT	=	libft_arm.a
-	FT		=	ft_arm
+	LIBFT		=	libft_arm.a
+	FT			=	ft_arm
 else
-	LIBFT	=	libft_x86.a
-	FT		=	ft_x86
+	LIBFT		=	libft_x86.a
+	FT			=	ft_x86
 endif
+LIBFT_DIR					=	libft
+LIBFT_FLAGS					=	-L$(LIBFT_DIR) -l$(FT)
 
-LIB_FLAGS	=	-L$(LIBFT_DIR) -l$(FT)
-#---------------------------------------------------------#
-NAME		=	push_swap
+#-----------------------MAKE RULES----------------------------#
+NAME						=	push_swap
+CHECKER						=	checker
 
-CHECKER		=	checker
+all:						$(NAME)
+pslib:						$(OBJ_DIR)/$(P_S_LIB)
+libft:						$(LIBFT_DIR)/$(LIBFT)
+bonus:						$(CHECKER)
 
-all:		$(NAME)
+$(NAME):					$(OBJ_DIR)/$(P_S_LIB) $(P_S_OBJ) $(LIBFT_DIR)/$(LIBFT)
+	$(LINKER) $(P_S_OBJ) $(LIBFT_FLAGS) $(P_S_FLAGS) -o $@
 
-lib:		$(LIBFT_DIR)/$(LIBFT)
+$(CHECKER):					$(OBJ_DIR)/$(P_S_LIB) $(CH_OBJ) $(LIBFT_DIR)/$(LIBFT)
+	$(LINKER) $(CH_OBJ) $(LIBFT_FLAGS) $(P_S_FLAGS) -o $@
 
-$(PUSH_LIB): $(OBJ)
-	ar -rcs $@ $^
+$(OBJ_DIR)/%.o:				$(SRC_DIR)/%.c | $(OBJ_DIR)/$(OBJ_SUBDIRS) 
+	$(COMPILER) $(INC_FLAGS) -c $< -o $@
 
-$(NAME):	$(PUSH_LIB) $(LIBFT_DIR)/$(LIBFT)
-	$(CC) $(CFLAGS) $(DFLAGS) $(GFLAGS) $(LFLAGS) src/main.c $(INC_FLAGS) $(LIB_FLAGS) $(PUSH_FLAGS) -o $@
+$(OBJ_DIR)/$(P_S_LIB):		$(OBJ_DIR)/$(P_S_LIB_OBJ) | $(OBJ_DIR)/$(OBJ_SUBDIRS)
+	$(ARCHIVER) $@ $(P_S_LIB_OBJ)
 
 $(LIBFT_DIR)/$(LIBFT):
 	@echo "LIBFT being created"
 	@$(MAKE) -C $(LIBFT_DIR)
 
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_SUBDIRS) $(OBJ_DIR)
-	@echo $(OBJ_SUBDIRS)
-	$(CC) $(CFLAGS) $(DFLAGS) $(GFLAGS) $(INC_FLAGS) -c $< -o $@
-
 $(OBJ_DIR):
-	@mkdir -p $@
-
+	mkdir -p $@
 $(OBJ_SUBDIRS):
-	@mkdir -p $@
-#---------------------------------------------------------#
+	mkdir -p $@
+#-----------------------CLEAN RULES---------------------------#
 clean:
 	rm -rf $(OBJ_DIR)
-	rm -rf $(BONUS_OBJ_DIR)
 
 fclean:		clean
-	rm -rf $(PUSH_LIB)
 	rm -rf $(NAME)
 	rm -rf $(CHECKER)
 
@@ -89,35 +92,4 @@ re: fclean all
 ffclean: fclean libclean
 
 .PHONY: all lib clean fclean libclean libre re ffclean bonus
-#---------------------------------------------------------#
-BONUS_SRC_DIR		=	src_bonus
-
-BONUS_SRC_SUBDIRS	=	$(shell find $(BONUS_SRC_DIR)/* -type d)
-
-BONUS_SRC			=	$(shell find $(BONUS_SRC_DIR)/* -type f)
-
-BONUS_OBJ_DIR		=	obj_bonus
-
-BONUS_OBJ_SUBDIRS	=	$(BONUS_SRC_SUBDIRS:$(BONUS_SRC_DIR)%=$(BONUS_OBJ_DIR)%)
-
-BONUS_OBJ			=	$(BONUS_SRC:$(BONUS_SRC_DIR)/%.c=$(BONUS_OBJ_DIR)/%.o)
-
-BONUS_INC_DIR		=	includes_bonus
-
-BONUS_INC_FLAGS	=	-I$(INC_DIR) -I$(BONUS_INC_DIR) -I$(LIBFT_DIR)/$(INC_DIR)
-#---------------------------------------------------------#
-bonus:		$(CHECKER)
-
-$(CHECKER):	$(PUSH_LIB) $(LIBFT_DIR)/$(LIBFT)
-	$(CC) $(CFLAGS) $(DFLAGS) $(LFLAGS) $(GFLAGS) src_bonus/checker_main.c $(INC_FLAGS) $(LIB_FLAGS) $(PUSH_FLAGS) -o $@
-
-$(BONUS_OBJ_DIR)/%.o: $(BONUS_SRC_DIR)/%.c | $(BONUS_OBJ_SUBDIRS) $(BONUS_OBJ_DIR)
-	@echo $(BONUS_OBJ_SUBDIRS)
-	$(CC) $(CFLAGS) $(DFLAGS) $(GFLAGS) $(BONUS_INC_FLAGS) -c $< -o $@
-
-$(BONUS_OBJ_DIR):
-	@mkdir -p $@
-
-$(BONUS_OBJ_SUBDIRS):
-	@mkdir -p $@
-#---------------------------------------------------------#
+#-------------------------------------------------------------#
