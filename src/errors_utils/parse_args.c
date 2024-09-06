@@ -2,7 +2,7 @@
 
 char	**ft_parse_str(char *str, size_t size)
 {
-	char **av;
+	char	**av;
 
 	av = ft_split(str, ' ');
 	if (!av)

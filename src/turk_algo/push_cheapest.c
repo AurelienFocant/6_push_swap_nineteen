@@ -63,7 +63,11 @@ t_node	*ft_find_cheapest(t_node **stack)
 	return (NULL);
 }
 
-void	ft_push_cheapest( t_node **stack_from, t_node **stack_to, int name_from, int name_to)
+void	ft_push_cheapest(
+	t_node **stack_from,
+	t_node **stack_to,
+	int name_from,
+	int name_to)
 {
 	t_node	*cheapest;
 

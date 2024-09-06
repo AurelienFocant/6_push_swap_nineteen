@@ -20,7 +20,10 @@ unsigned int	ft_return_bigger_cost(unsigned int cost1, unsigned int cost2)
 		return (cost2);
 }
 
-int	ft_double_rotate_possible(t_node *cheapest, t_node *stack_from, t_node *stack_to)
+int	ft_double_rotate_possible(
+	t_node *cheapest,
+	t_node *stack_from,
+	t_node *stack_to)
 {
 	int	from;
 	int	to;
@@ -57,7 +60,7 @@ int	ft_find_cost(t_node *node, t_node **stack_a, t_node **stack_b)
 	cost2 = ft_count_moves_to_top(node->target, *stack_b);
 	if (ft_double_rotate_possible(node, *stack_a, *stack_b))
 		return (ft_return_bigger_cost(cost1, cost2));
-	else 
+	else
 		return (cost1 + cost2);
 }
 

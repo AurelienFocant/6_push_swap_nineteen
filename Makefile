@@ -53,10 +53,10 @@ pslib:						$(OBJ_DIR)/$(P_S_LIB)
 libft:						$(LIBFT_DIR)/$(LIBFT)
 bonus:						$(CHECKER)
 
-$(NAME):					$(OBJ_DIR)/$(P_S_LIB) $(P_S_OBJ) $(LIBFT_DIR)/$(LIBFT)
+$(NAME):					$(OBJ_DIR)/$(P_S_LIB) $(P_S_OBJ) $(CH_OBJ) $(LIBFT_DIR)/$(LIBFT)
 	$(LINKER) $(P_S_OBJ) $(LIBFT_FLAGS) $(P_S_FLAGS) -o $@
 
-$(CHECKER):					$(OBJ_DIR)/$(P_S_LIB) $(CH_OBJ) $(LIBFT_DIR)/$(LIBFT)
+$(CHECKER):					$(OBJ_DIR)/$(P_S_LIB) $(P_S_OBJ) $(CH_OBJ) $(LIBFT_DIR)/$(LIBFT)
 	$(LINKER) $(CH_OBJ) $(LIBFT_FLAGS) $(P_S_FLAGS) -o $@
 
 $(OBJ_DIR)/%.o:				$(SRC_DIR)/%.c | $(OBJ_DIR)/$(OBJ_SUBDIRS) 

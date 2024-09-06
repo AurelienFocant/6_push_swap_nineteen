@@ -50,7 +50,6 @@ int	main(int argc, char **argv)
 {
 	char	*line;
 	char	**av;
-
 	t_node	*stack_a;
 	t_node	*stack_b;
 
