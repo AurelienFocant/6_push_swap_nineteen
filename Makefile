@@ -2,6 +2,7 @@
 CC								=	cc
 CFLAGS							=	-Wall -Wextra -Werror
 GFLAGS							=	-g3
+MAKEFLAGS						=	--no-print-directory
 
 LINK			=	$(shell ld -v 2>&1 | grep GNU && whereis lld)
 ifneq ($(LINK),)
