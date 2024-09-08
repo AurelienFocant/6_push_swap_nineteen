@@ -4,11 +4,13 @@ CFLAGS						=	-Wall -Wextra -Werror
 GFLAGS						=	-g
 LINK						=	$(shell ld -v 2>&1 | grep GNU && whereis lld)
 ifneq ($(LINK),)
-	LFLAGS					=	-fuse-ld=lld
+	LDFLAGS					=	-fuse-ld=lld
+else
+	LDFLAGS					=	-fuse-ld=ld
 endif
 
 COMPILER					=	$(CC) $(CFLAGS) $(GFLAGS)
-LINKER						=	$(CC) $(LNKFLAGS) $(CFLAGS) $(GFLAGS)
+LINKER						=	$(CC) $(LDFLAGS) $(CFLAGS) $(GFLAGS)
 ARCHIVER					=	ar -rcs
 
 #-----------------------HEADER FILES--------------------------#
