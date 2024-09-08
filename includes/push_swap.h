@@ -39,6 +39,11 @@ typedef struct s_node
 /*----------------  checker_main_bonus.c  ---------------*/
 void			ft_checker_error(t_node **stack_a, t_node **stack_b);
 void			ft_execute_cmd(char *line, t_node **stack_a, t_node **stack_b);
+void			ft_read_operations(t_node **stack_a, t_node **stack_b);
+int				ft_check_if_sorted(
+					unsigned int len_a,
+					t_node *stack_a,
+					t_node *stack_b);
 
 /*----------------  rotate.c  ---------------*/
 void			ft_rotate(t_node **stack);

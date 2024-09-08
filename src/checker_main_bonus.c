@@ -59,6 +59,23 @@ void	ft_read_operations(t_node **stack_a, t_node **stack_b)
 	}
 }
 
+int	ft_check_if_sorted(unsigned int len_a, t_node *stack_a, t_node *stack_b)
+{
+	if (ft_is_sorted(stack_a)
+		&& ft_stacklen(stack_a) == len_a
+		&& ft_stacklen(stack_b) == 0
+	)
+	{
+		ft_printf("OK\n");
+		return (TRUE);
+	}
+	else
+	{
+		ft_printf("KO\n");
+		return (FALSE);
+	}
+}
+
 int	main(int argc, char **argv)
 {
 	char				**av;
@@ -72,10 +89,7 @@ int	main(int argc, char **argv)
 	ft_init_stack(av, &stack_a);
 	len_a = ft_stacklen(stack_a);
 	ft_read_operations(&stack_a, &stack_b);
-	if (ft_is_sorted(stack_a) && ft_stacklen(stack_a) == len_a && ft_stacklen(stack_b) == 0)
-		ft_printf("OK\n");
-	else
-		ft_printf("KO\n");
+	ft_check_if_sorted(len_a, stack_a, stack_b);
 	ft_free_linkedlist(stack_a);
 	return (EXIT_SUCCESS);
 }
