@@ -46,28 +46,36 @@ void	ft_execute_cmd(char *line, t_node **stack_a, t_node **stack_b)
 		ft_checker_error(stack_a, stack_b);
 }
 
-int	main(int argc, char **argv)
+void	ft_read_operations(t_node **stack_a, t_node **stack_b)
 {
 	char	*line;
-	char	**av;
-	t_node	*stack_a;
-	t_node	*stack_b;
+
+	line = ft_get_next_line(STDIN_FILENO);
+	while (line)
+	{
+		ft_execute_cmd(line, stack_a, stack_b);
+		free(line);
+		line = ft_get_next_line(STDIN_FILENO);
+	}
+}
+
+int	main(int argc, char **argv)
+{
+	char				**av;
+	t_node				*stack_a;
+	t_node				*stack_b;
+	unsigned int		len_a;
 
 	av = ft_check_arg_errors(argc, argv);
 	stack_a = NULL;
 	stack_b = NULL;
 	ft_init_stack(av, &stack_a);
-	line = ft_get_next_line(STDIN_FILENO);
-	while (line)
-	{
-		ft_execute_cmd(line, &stack_a, &stack_b);
-		free(line);
-		line = ft_get_next_line(STDIN_FILENO);
-	}
-	if (ft_is_sorted(stack_a))
+	len_a = ft_stacklen(stack_a);
+	ft_read_operations(&stack_a, &stack_b);
+	if (ft_is_sorted(stack_a) && ft_stacklen(stack_a) == len_a && ft_stacklen(stack_b) == 0)
 		ft_printf("OK\n");
 	else
 		ft_printf("KO\n");
 	ft_free_linkedlist(stack_a);
-	return (0);
+	return (EXIT_SUCCESS);
 }
