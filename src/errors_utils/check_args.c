@@ -6,7 +6,7 @@
 /*   By: afocant <afocant@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 21:02:17 by afocant           #+#    #+#             */
-/*   Updated: 2024/09/05 21:10:15 by afocant          ###   ########.fr       */
+/*   Updated: 2024/09/09 16:38:59 by afocant          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ char	**ft_check_arg_errors(int argc, char **argv)
 	char	**av;
 
 	if (argc == 2)
-		av = ft_parse_str(argv[1], (size_t) argc - 1);
+		av = ft_parse_str(argv[1]);
 	else
 		av = ft_parse_args(argv + 1, (size_t) argc - 1);
 	return (av);

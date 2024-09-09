@@ -6,7 +6,7 @@
 /*   By: afocant <afocant@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 15:12:53 by afocant           #+#    #+#             */
-/*   Updated: 2024/09/05 21:10:19 by afocant          ###   ########.fr       */
+/*   Updated: 2024/09/09 16:42:25 by afocant          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,11 @@ int	main(int argc, char **argv)
 	ft_init_stack(av, &stack_a);
 	if (argc == 2)
 		ft_free_strv(av);
+	if (ft_is_sorted(stack_a))
+	{
+		ft_free_linkedlist(stack_a);
+		return (EXIT_SUCCESS);
+	}
 	if (ft_stacklen(stack_a) == 2)
 		ft_sort_two(&stack_a);
 	else if (ft_stacklen(stack_a) == 3)

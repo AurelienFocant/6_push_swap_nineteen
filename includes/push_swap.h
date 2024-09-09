@@ -6,7 +6,7 @@
 /*   By: afocant <afocant@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 16:50:15 by afocant           #+#    #+#             */
-/*   Updated: 2024/09/05 23:21:30 by afocant          ###   ########.fr       */
+/*   Updated: 2024/09/09 16:34:13 by afocant          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,8 @@ int				ft_sort_two(t_node **stack);
 int				ft_is_sorted(t_node *stack);
 
 /*----------------  parse_args.c  ---------------*/
-char			**ft_parse_str(char *str, size_t size);
+size_t			ft_count_args(char **av);
+char			**ft_parse_str(char *str);
 char			**ft_parse_args(char **argv, size_t size);
 
 /*----------------  errors_utils.c  ---------------*/
