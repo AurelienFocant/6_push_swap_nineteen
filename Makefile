@@ -86,7 +86,7 @@ fclean:		clean
 libclean:
 	@$(MAKE) -C $(LIBFT_DIR) fclean
 
-libre: libclean lib
+libre: libclean libft
 
 re: fclean all
 
