@@ -6,7 +6,7 @@
 /*   By: afocant <afocant@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 16:50:39 by afocant           #+#    #+#             */
-/*   Updated: 2024/09/05 21:03:42 by afocant          ###   ########.fr       */
+/*   Updated: 2024/09/24 12:09:11 by afocant          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,29 +18,28 @@ void	ft_error_exit(char *msg, int exitcode)
 	exit(exitcode);
 }
 
-void	ft_free_null(void *ptr)
+void	ft_free_null1(void *ptr)
 {
 	free(ptr);
 	ptr = NULL;
 }
 
-void	ft_free_strv(char **av)
+void	ft_free_strv1(char **av)
 {
 	char	**ptr;
 
 	ptr = av;
 	while (*ptr)
 	{
-		ft_free_null(*ptr);
+		ft_free_null1(*ptr);
 		ptr++;
 	}
-	ft_free_null(*ptr);
+	ft_free_null1(*ptr);
 	free(av);
 }
 
 void	ft_free_error_exit(char **av, char *msg, int exitcode)
 {
-	(void) av;
-	ft_free_strv(av);
+	ft_free_null_strv(&av);
 	ft_error_exit(msg, exitcode);
 }

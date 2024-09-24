@@ -16,7 +16,7 @@ LINKER							=	$(CC) $(LDFLAGS) $(CFLAGS) $(GFLAGS)
 ARCHIVER						=	ar -rcs
 
 #-----------------------HEADER FILES--------------------------#
-INC_DIR							=	includes
+INC_DIR							=	include
 INC_FLAGS						=	-I$(INC_DIR) -I$(LIBFT_DIR)/$(INC_DIR)
 
 #-----------------------SOURCE FILES--------------------------#

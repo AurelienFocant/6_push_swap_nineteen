@@ -6,7 +6,7 @@
 /*   By: afocant <afocant@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 16:50:15 by afocant           #+#    #+#             */
-/*   Updated: 2024/09/09 16:34:13 by afocant          ###   ########.fr       */
+/*   Updated: 2024/09/24 12:05:53 by afocant          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,8 +107,8 @@ char			**ft_parse_args(char **argv, size_t size);
 
 /*----------------  errors_utils.c  ---------------*/
 void			ft_error_exit(char *msg, int exitcode);
-void			ft_free_null(void *ptr);
-void			ft_free_strv(char **av);
+void			ft_free_null1(void *ptr);
+void			ft_free_strv1(char **av);
 void			ft_free_error_exit(char **av, char *msg, int exitcode);
 
 /*----------------  check_args.c  ---------------*/
