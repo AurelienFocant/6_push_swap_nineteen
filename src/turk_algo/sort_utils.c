@@ -15,17 +15,12 @@
 t_node	*ft_find_max(t_node *stack)
 {
 	t_node	*res;
-	int		max;
 
-	res = NULL;
-	max = INT_MIN;
+	res = stack;
 	while (stack)
 	{
-		if (stack->data > max)
-		{
-			max = stack->data;
+		if (stack->data > res->data)
 			res = stack;
-		}
 		stack = stack->next;
 	}
 	return (res);
@@ -34,17 +29,12 @@ t_node	*ft_find_max(t_node *stack)
 t_node	*ft_find_min(t_node *stack)
 {
 	t_node	*res;
-	int		min;
 
-	res = NULL;
-	min = INT_MAX;
+	res = stack;
 	while (stack)
 	{
-		if (stack->data < min)
-		{
-			min = stack->data;
+		if (stack->data < res->data)
 			res = stack;
-		}
 		stack = stack->next;
 	}
 	return (res);
@@ -75,14 +65,10 @@ int	ft_sort_two(t_node **stack)
 
 int	ft_is_sorted(t_node *stack)
 {
-	int		min;
-
-	min = INT_MIN;
-	while (stack)
+	while (stack && stack->next)
 	{
-		if (stack->data < min)
+		if (stack->data > stack->next->data)
 			return (FALSE);
-		min = stack->data;
 		stack = stack->next;
 	}
 	return (TRUE);
