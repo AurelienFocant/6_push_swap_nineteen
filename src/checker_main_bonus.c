@@ -83,6 +83,8 @@ int	main(int argc, char **argv)
 	t_node				*stack_b;
 	unsigned int		len_a;
 
+	if (argc == 1)
+		return (EXIT_SUCCESS);
 	av = ft_check_arg_errors(argc, argv);
 	stack_a = NULL;
 	stack_b = NULL;
