@@ -39,23 +39,8 @@ PUSH_FLAGS						=	-L$(OBJ_DIR) -lpush
 
 #-------------------------LIBFT-------------------------------#
 LIBFT_DIR						=	libft
-DARWIN_ARM64	=	$(shell uname -a | grep Darwin | grep -E '(aarch64|arm64)')
-DARWIN_X86		=	$(shell uname -a | grep Darwin | grep -E x86)
-LINUX_ARM64		=	$(shell uname -a | grep Linux  | grep -E '(aarch64|arm64)')
-LINUX_X86		=	$(shell uname -a | grep Linux  | grep -E x86)
-ifneq ($(DARWIN_ARM64),)
-	LIBFT		=	$(LIBFT_DIR)/libft_darwin_arm64.a
-	FT			=	ft_darwin_arm64
-else ifneq ($(DARWIN_X86),)
-	LIBFT		=	$(LIBFT_DIR)/libft_darwin_x86.a
-	FT			=	ft_darwin_x86
-else ifneq ($(LINUX_ARM64),)
-	LIBFT		=	$(LIBFT_DIR)/libft_linux_arm64.a
-	FT			=	ft_linux_arm66
-else ifneq ($(LINUX_X86),)
-	LIBFT		=	$(LIBFT_DIR)/libft_linux_x86.a
-	FT			=	ft_linux_x86
-endif
+LIBFT							=	$(LIBFT_DIR)/libft.a
+FT								=	ft
 LIBFT_FLAGS						=	-L$(LIBFT_DIR) -l$(FT)
 
 #-----------------------MAKE RULES----------------------------#
