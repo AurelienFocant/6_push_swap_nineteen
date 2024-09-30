@@ -6,7 +6,7 @@
 /*   By: afocant <afocant@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 15:37:36 by afocant           #+#    #+#             */
-/*   Updated: 2024/09/04 14:05:05 by afocant          ###   ########.fr       */
+/*   Updated: 2024/09/30 15:42:51 by afocant          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,20 +15,16 @@
 void	ft_find_target_bigger(t_node *node, t_node **stack)
 {
 	t_node	*ptr;
-	long	target;
 
-	target = LONG_MAX;
+	node->target = NULL;
 	ptr = *stack;
 	while (ptr)
 	{
-		if (ptr->data > node->data && ptr->data < target)
-		{
+		if (ptr->data > node->data && (!node->target || ptr->data < node->target->data))
 			node->target = ptr;
-			target = ptr->data;
-		}
 		ptr = ptr->next;
 	}
-	if (target == LONG_MAX)
+	if (!node->target)
 		node->target = ft_find_min(*stack);
 }
 
@@ -47,20 +43,16 @@ void	ft_set_targets_bigger(t_node **stack_from, t_node **stack_to)
 void	ft_find_target_smaller(t_node *node, t_node **stack)
 {
 	t_node	*ptr;
-	long	target;
 
-	target = LONG_MIN;
+	node->target = NULL;
 	ptr = *stack;
 	while (ptr)
 	{
-		if (ptr->data < node->data && ptr->data > target)
-		{
+		if (ptr->data < node->data && (!node->target || ptr->data > node->target->data))
 			node->target = ptr;
-			target = ptr->data;
-		}
 		ptr = ptr->next;
 	}
-	if (target == LONG_MIN)
+	if (!node->target)
 		node->target = ft_find_max(*stack);
 }
 
