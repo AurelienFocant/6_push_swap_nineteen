@@ -52,11 +52,11 @@ pslib:							$(PUSH_LIB)
 libft:							$(LIBFT)
 bonus:							$(CHECKER)
 
-$(NAME):						$(PUSH_LIB) $(PUSH_OBJ) $(LIBFT)
-	$(LINKER) $(PUSH_OBJ) $(LIBFT_FLAGS) $(PUSH_FLAGS) -o $@
+$(NAME):						$(LIBFT) $(PUSH_LIB) $(PUSH_OBJ)
+	$(LINKER) $(PUSH_OBJ) $(PUSH_FLAGS) $(LIBFT_FLAGS) -o $@
 
-$(CHECKER):						$(PUSH_LIB) $(CHECK_OBJ) $(LIBFT)
-	$(LINKER) $(CHECK_OBJ) $(LIBFT_FLAGS) $(PUSH_FLAGS) -o $@
+$(CHECKER):						$(LIBFT) $(PUSH_LIB) $(CHECK_OBJ)
+	$(LINKER) $(CHECK_OBJ) $(PUSH_FLAGS) $(LIBFT_FLAGS) -o $@
 
 $(OBJ_DIR)/%.o:					$(SRC_DIR)/%.c
 	@mkdir -p $(@D)
