@@ -30,10 +30,10 @@
 
 typedef struct s_node
 {
-	int				data;
-	struct s_node	*next;
+	int				value;
 	struct s_node	*target;
 	int				cost;
+	struct s_node	*next;
 }					t_node;
 
 /*----------------  checker_main_bonus.c  ---------------*/
@@ -118,14 +118,14 @@ int				ft_check_duplicates(char **argv, size_t size);
 char			**ft_check_arg_errors(int argc, char **argv);
 
 /*----------------  print_list.c  ---------------*/
-void			ft_print_node_data(t_node *node);
+void			ft_print_node_value(t_node *node);
 void			ft_print_list(t_node *stack);
 void			ft_print_stack(t_node *stack, char *name);
 void			ft_print_both_stacks(t_node *stack_a, t_node *stack_b);
 
 /*----------------  list_init.c  ---------------*/
 void			ft_init_stack(char **argv, t_node **stack_a);
-void			ft_create_node(int data, t_node **stack_a);
+void			ft_create_node(int value, t_node **stack_a);
 void			ft_free_linkedlist(t_node *lst);
 void			ft_free_lists(t_node *stack_a, t_node *stack_b);
 

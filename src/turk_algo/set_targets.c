@@ -20,7 +20,7 @@ void	ft_find_target_bigger(t_node *node, t_node **stack)
 	ptr = *stack;
 	while (ptr)
 	{
-		if (ptr->data > node->data && (!node->target || ptr->data < node->target->data))
+		if (ptr->value > node->value && (!node->target || ptr->value < node->target->value))
 			node->target = ptr;
 		ptr = ptr->next;
 	}
@@ -48,7 +48,7 @@ void	ft_find_target_smaller(t_node *node, t_node **stack)
 	ptr = *stack;
 	while (ptr)
 	{
-		if (ptr->data < node->data && (!node->target || ptr->data > node->target->data))
+		if (ptr->value < node->value && (!node->target || ptr->value > node->target->value))
 			node->target = ptr;
 		ptr = ptr->next;
 	}

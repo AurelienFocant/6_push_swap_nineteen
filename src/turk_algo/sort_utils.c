@@ -19,7 +19,7 @@ t_node	*ft_find_max(t_node *stack)
 	res = stack;
 	while (stack)
 	{
-		if (stack->data > res->data)
+		if (stack->value > res->value)
 			res = stack;
 		stack = stack->next;
 	}
@@ -33,7 +33,7 @@ t_node	*ft_find_min(t_node *stack)
 	res = stack;
 	while (stack)
 	{
-		if (stack->data < res->data)
+		if (stack->value < res->value)
 			res = stack;
 		stack = stack->next;
 	}
@@ -58,7 +58,7 @@ int	ft_sort_three(t_node **stack)
 
 int	ft_sort_two(t_node **stack)
 {
-	if ((*stack)->data > (*stack)->next->data)
+	if ((*stack)->value > (*stack)->next->value)
 		sa(stack, PRINT);
 	return (TRUE);
 }
@@ -67,7 +67,7 @@ int	ft_is_sorted(t_node *stack)
 {
 	while (stack && stack->next)
 	{
-		if (stack->data > stack->next->data)
+		if (stack->value > stack->next->value)
 			return (FALSE);
 		stack = stack->next;
 	}

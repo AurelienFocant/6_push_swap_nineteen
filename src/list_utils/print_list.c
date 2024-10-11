@@ -12,11 +12,11 @@
 
 #include "push_swap.h"
 
-void	ft_print_node_data(t_node *node)
+void	ft_print_node_value(t_node *node)
 {
 	if (!node)
 		return ;
-	ft_printf("%i\n", node->data);
+	ft_printf("%i\n", node->value);
 }
 
 void	ft_print_list(t_node *stack)
@@ -26,7 +26,7 @@ void	ft_print_list(t_node *stack)
 	ptr = stack;
 	while (ptr)
 	{
-		ft_print_node_data(ptr);
+		ft_print_node_value(ptr);
 		ptr = ptr->next;
 	}
 }
@@ -49,14 +49,14 @@ void	ft_print_both_stacks(t_node *stack_a, t_node *stack_b)
 	{
 		if (ptr_a)
 		{
-			ft_printf("%i ", ptr_a->data);
+			ft_printf("%i ", ptr_a->value);
 			ptr_a = ptr_a->next;
 		}
 		else
 			ft_printf("  ");
 		if (ptr_b)
 		{
-			ft_printf("%i\n", ptr_b->data);
+			ft_printf("%i\n", ptr_b->value);
 			ptr_b = ptr_b->next;
 		}
 		else
