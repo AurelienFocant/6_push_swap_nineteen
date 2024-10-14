@@ -21,13 +21,10 @@ void	ft_print_node_value(t_node *node)
 
 void	ft_print_list(t_node *stack)
 {
-	t_node	*ptr;
-
-	ptr = stack;
-	while (ptr)
+	while (stack)
 	{
-		ft_print_node_value(ptr);
-		ptr = ptr->next;
+		ft_print_node_value(stack);
+		stack = stack->next;
 	}
 }
 
