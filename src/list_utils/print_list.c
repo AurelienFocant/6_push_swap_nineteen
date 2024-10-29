@@ -36,25 +36,20 @@ void	ft_print_stack(t_node *stack, char *name)
 
 void	ft_print_both_stacks(t_node *stack_a, t_node *stack_b)
 {
-	t_node	*ptr_a;
-	t_node	*ptr_b;
-
 	ft_printf("\nA B\n");
-	ptr_a = stack_a;
-	ptr_b = stack_b;
-	while (ptr_a || ptr_b)
+	while (stack_a || stack_b)
 	{
-		if (ptr_a)
+		if (stack_a)
 		{
-			ft_printf("%i ", ptr_a->value);
-			ptr_a = ptr_a->next;
+			ft_printf("%i ", stack_a->value);
+			stack_a = stack_a->next;
 		}
 		else
 			ft_printf("  ");
-		if (ptr_b)
+		if (stack_b)
 		{
-			ft_printf("%i\n", ptr_b->value);
-			ptr_b = ptr_b->next;
+			ft_printf("%i\n", stack_b->value);
+			stack_b = stack_b->next;
 		}
 		else
 			ft_printf(" \n");
