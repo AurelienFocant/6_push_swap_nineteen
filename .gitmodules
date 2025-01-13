@@ -1,0 +1,3 @@
+[submodule "libft"]
+	path = libft
+	url = https://github.com/AurelienFocant/0_libft_nineteen.git
