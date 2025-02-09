@@ -4,11 +4,9 @@ CFLAGS			    		=	-Wall -Wextra -Werror
 GFLAGS			    		=	-g3
 MAKEFLAGS		    		=	--no-print-directory
 
-LINK	=   $(shell ld -v 2>&1 | grep GNU && whereis lld)
+LINK	=   $(shell ld -v 2>&1 | grep GNU && lld -v)
 ifneq ($(LINK),)
 	LDFLAGS	    =	-fuse-ld=lld
-else
-	LDFLAGS	    =	-fuse-ld=ld
 endif
 
 COMPILER					=	$(CC) $(CFLAGS) $(GFLAGS)
